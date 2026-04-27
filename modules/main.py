@@ -314,7 +314,7 @@ async def txt_handler(bot: Client, m: Message):
                 cc = f'**🏷️ Iɴᴅᴇx ID: {str(count).zfill(3)}.\n\n🎞️Tɪᴛʟᴇ: {name1} {res}.mkv\n\n<pre><code>📚 𝗕ᴀᴛᴄʜ: {b_name}</code></pre>\n\n📥 Uᴘʟᴏᴀᴅ Bʏ : </b> {CR}\n\n<pre><code>━━━━━✦𝗭𝗫✦━━━━━</code></pre>'
                 cc1 = f'**🏷️ Iɴᴅᴇx ID: {str(count).zfill(3)}.\n\n📑Tɪᴛʟᴇ: {name1} .pdf\n\n<pre><code>📚 𝗕ᴀᴛᴄʜ: {b_name}</code></pre>\n\n📥 Uᴘʟᴏᴀᴅ Bʏ : </b> {CR}\n\n<pre><code>━━━━━✦𝗭𝗫✦━━━━━</code></pre>'
                     
-                
+        
                 if "drive" in url:
                     try:
                         ka = await helper.download(url, name)
@@ -545,8 +545,8 @@ async def txt_handler(bot: Client, m: Message):
 
             try:  
         
-                cc = f'**🎞️ VID_ID: {str(count).zfill(3)}.\n\nTitle: {name1} STUDENTS💙{res}.mkv\n\n📚 Batch Name: {b_name}\n\n📥 Extracted By : {CR}\n\n**━━━━━✦💙𝗝𝗕💙✦━━━━━━**'
-                cc1 = f'**📁 PDF_ID: {str(count).zfill(3)}.\n\nTitle: {name1} STUDENTS💙.pdf\n\n📚 Batch Name: {b_name}\n\n📥 Extracted By : {CR}\n\n**━━━━━✦💙𝗝𝗕💙✦━━━━━━**'
+                cc = f'**🏷️ Iɴᴅᴇx ID: {str(count).zfill(3)}.\n\n🎞️Tɪᴛʟᴇ: {name1} {res}.mkv\n\n<pre><code>📚 𝗕ᴀᴛᴄʜ: {b_name}</code></pre>\n\n📥 Uᴘʟᴏᴀᴅ Bʏ : </b> {CR}\n\n<pre><code>━━━━━✦𝗭𝗫✦━━━━━</code></pre>'
+                cc1 = f'**🏷️ Iɴᴅᴇx ID: {str(count).zfill(3)}.\n\n📑Tɪᴛʟᴇ: {name1} .pdf\n\n<pre><code>📚 𝗕ᴀᴛᴄʜ: {b_name}</code></pre>\n\n📥 Uᴘʟᴏᴀᴅ Bʏ : </b> {CR}\n\n<pre><code>━━━━━✦𝗭𝗫✦━━━━━</code></pre>'
                     
                 
                 if "drive" in url:
