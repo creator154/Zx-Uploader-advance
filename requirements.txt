@@ -7,3 +7,4 @@ flask
 gunicorn
 yt-dlp
 cloudscraper
+m3u8
