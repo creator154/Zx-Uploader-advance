@@ -2,9 +2,17 @@ pyrogram
 tgcrypto
 requests
 aiohttp
+aiofiles
 python-dotenv
 flask
 gunicorn
 yt-dlp
 cloudscraper
 m3u8
+beautifulsoup4
+lxml
+psutil
+pymongo
+motor
+opencv-python-headless
+Pillow
