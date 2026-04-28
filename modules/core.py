@@ -1,53 +1,42 @@
 import os
 import asyncio
-import aiohttp
-import aiofiles
 import logging
+import aiohttp
 from pyrogram import Client, filters
 from pyrogram.types import Message
-from yt_dlp import YoutubeDL
 
 
 # =========================
 # CONFIG
 # =========================
-MAX_CONCURRENT_DOWNLOADS = 3
+MAX_CONCURRENT = 3
 
 logging.basicConfig(level=logging.INFO)
 
 
 # =========================
-# GLOBAL SESSION (FAST)
+# GLOBALS (SAFE INIT)
 # =========================
-session = aiohttp.ClientSession(
-    connector=aiohttp.TCPConnector(limit=200, force_close=False)
-)
-
-
-# =========================
-# QUEUE SYSTEM
-# =========================
+session = None
 queue = asyncio.Queue()
-semaphore = asyncio.Semaphore(MAX_CONCURRENT_DOWNLOADS)
+semaphore = asyncio.Semaphore(MAX_CONCURRENT)
 
 
 # =========================
-# YT-DLP OPTIONS (FAST)
+# INIT SESSION (FIX FOR ERROR)
 # =========================
-ydl_opts = {
-    "quiet": True,
-    "concurrent_fragment_downloads": 10,
-    "retries": 10,
-    "fragment_retries": 10,
-    "buffersize": 1024 * 1024,
-}
+async def init_session():
+    global session
+    session = aiohttp.ClientSession(
+        connector=aiohttp.TCPConnector(limit=100, limit_per_host=20)
+    )
 
 
 # =========================
 # START WORKERS
 # =========================
 async def start_workers():
-    for _ in range(MAX_CONCURRENT_DOWNLOADS):
+    for _ in range(MAX_CONCURRENT):
         asyncio.create_task(worker())
 
 
@@ -59,7 +48,7 @@ async def worker():
             try:
                 file_path = await download_video(cmd, name)
 
-                if file_path:
+                if file_path and os.path.exists(file_path):
                     await message.reply_document(file_path)
                     os.remove(file_path)
 
@@ -70,7 +59,7 @@ async def worker():
 
 
 # =========================
-# FAST DOWNLOAD ENGINE
+# FAST YT-DLP + ARIA2C
 # =========================
 async def download_video(cmd: str, name: str):
     download_cmd = (
@@ -99,7 +88,7 @@ async def download_video(cmd: str, name: str):
 
 
 # =========================
-# ADD TO QUEUE
+# QUEUE HANDLER
 # =========================
 async def add_task(bot, url, cmd, name, message: Message):
     await queue.put((bot, url, cmd, name, message))
@@ -107,11 +96,14 @@ async def add_task(bot, url, cmd, name, message: Message):
 
 
 # =========================
-# COMMAND HANDLER
+# BOT APP
 # =========================
 app = Client("bot")
 
 
+# =========================
+# COMMAND
+# =========================
 @app.on_message(filters.command("dl"))
 async def dl_handler(bot, message: Message):
     try:
@@ -128,12 +120,13 @@ async def dl_handler(bot, message: Message):
 
 
 # =========================
-# START BOT
+# STARTUP (IMPORTANT FIX)
 # =========================
 async def main():
+    await init_session()      # 🔥 FIX: event loop ready now
     await start_workers()
     await app.start()
-    print("🚀 Bot Started")
+    print("🚀 Bot Started Successfully")
     await idle()
 
 
