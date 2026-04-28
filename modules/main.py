@@ -148,7 +148,8 @@ async def start(client: Client, msg: Message):
     await asyncio.sleep(1)
     await start_message.edit_text(
         Data.START.format(msg.from_user.mention) +
-        "ᴄʜᴇᴄᴋɪɴɢ ꜱᴛᴀᴛᴜꜱ ᴀᴄᴛɪᴠᴇ... Command Pta Hai Ki Nhi Sirji 🙃 Contact @Itz_Sumit**🔍\n\n"
+        "ᴄʜᴇᴄᴋɪɴɢ ꜱᴛᴀᴛᴜꜱ ᴀᴄᴛɪᴠᴇ... ᴄᴏᴍᴍᴀɴᴅ ᴘᴛᴀ ʜᴀɪ ᴋɪ ɴʜɪ ꜱɪʀᴊɪ 🙃  
+ᴄᴏɴᴛᴀᴄᴛ @Itz_Sumit**🔍\n\n"
         "ᴘʀᴏɢʀᴇꜱꜱ:[🟩🟥🟩🟥🟩🟥🟩🟥🟩] 100%\n\n"
     )
 
