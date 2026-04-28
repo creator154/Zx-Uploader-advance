@@ -6,3 +6,4 @@ python-dotenv
 flask
 gunicorn
 yt-dlp
+cloudscraper
