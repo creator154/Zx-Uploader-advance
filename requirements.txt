@@ -1,4 +1,5 @@
 pyrogram
+pyromod
 tgcrypto
 requests
 aiohttp
@@ -9,6 +10,7 @@ gunicorn
 yt-dlp
 cloudscraper
 m3u8
+pytube
 beautifulsoup4
 lxml
 psutil
@@ -16,4 +18,3 @@ pymongo
 motor
 opencv-python-headless
 Pillow
-pytube
