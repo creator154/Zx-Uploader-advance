@@ -16,3 +16,4 @@ pymongo
 motor
 opencv-python-headless
 Pillow
+pytube
