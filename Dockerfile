@@ -1,13 +1,21 @@
-#FROM python:3.9.7-slim-buster
-FROM python:3.13.0
-RUN apt-get update -y && apt-get upgrade -y \
-    && apt-get install -y --no-install-recommends gcc libffi-dev musl-dev ffmpeg aria2 python3-pip \
-    && apt-get clean \
-    && rm -rf /var/lib/apt/lists/*
+FROM python:3.11-slim
+
+RUN apt-get update && apt-get install -y \
+ffmpeg \
+aria2 \
+gcc \
+libffi-dev \
+python3-pip \
+&& apt-get clean \
+&& rm -rf /var/lib/apt/lists/*
+
+WORKDIR /app
 
 COPY . /app/
-WORKDIR /app/
-RUN pip install --upgrade pip -r Installer
+
+RUN pip install --upgrade pip
+RUN pip install -r Installer
+
 ENV COOKIES_FILE_PATH="/modules/youtube_cookies.txt"
 
-CMD gunicorn app:app & python3 modules/main.py
+CMD python3 modules/main.py
