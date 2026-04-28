@@ -149,7 +149,7 @@ async def start(client: Client, msg: Message):
     await start_message.edit_text(
         Data.START.format(msg.from_user.mention) +
         "ᴄʜᴇᴄᴋɪɴɢ ꜱᴛᴀᴛᴜꜱ ᴀᴄᴛɪᴠᴇ... Command Pta Hai Ki Nhi Sirji 🙃 Contact @Itz_Sumit**🔍\n\n"
-        "Progress:[🟩🟥🟩🟥🟩🟥🟩🟥🟩] 100%\n\n"
+        "ᴘʀᴏɢʀᴇꜱꜱ:[🟩🟥🟩🟥🟩🟥🟩🟥🟩] 100%\n\n"
     )
 
 @bot.on_message(filters.command(["stop"]) )
