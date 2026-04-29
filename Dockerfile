@@ -5,7 +5,6 @@ ffmpeg \
 aria2 \
 gcc \
 libffi-dev \
-python3-pip \
 wget \
 curl \
 && apt-get clean \
@@ -15,10 +14,10 @@ WORKDIR /app
 
 COPY . /app/
 
-RUN pip install --upgrade pip
-RUN pip install -r Installer
+RUN pip install --upgrade pip && \
+    pip install --no-cache-dir -r Installer
 
-ENV COOKIES_FILE_PATH="/modules/youtube_cookies.txt"
+ENV COOKIES_FILE_PATH=/app/modules/youtube_cookies.txt
 ENV PYTHONUNBUFFERED=1
 
-CMD python3 modules/main.py
+CMD ["python3","modules/main.py"]
