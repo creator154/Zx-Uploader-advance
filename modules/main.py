@@ -390,7 +390,7 @@ async def txt_handler(bot: Client, m: Message):
 
 ⌨ 𝐐𝐮𝐚𝐥𝐢𝐭𝐲 » {raw_text2}
 
-<a href="{url}">🤖 𝐀𝐈 𝐒𝐚𝐲𝐬: ᴜʀʟ ᴅᴇᴋʜ ᴋᴀʀ ᴋʏᴀ ᴋᴀʀᴏɢᴇ  👀
+<a href="{url}">🤖 ᴜʀʟ ᴅᴇᴋʜ ᴋᴀʀ ᴋʏᴀ ᴋᴀʀᴏɢᴇ  👀
 
  𝐂𝐨𝐧𝐭𝐚𝐜𝐭 𝐌𝐲 𝐁𝐨𝐬𝐬😎 » @Itz_Sumit
 
@@ -411,7 +411,7 @@ async def txt_handler(bot: Client, m: Message):
 
     except Exception as e:
         await m.reply_text(e)
-    await m.reply_text("𝐀𝐋𝐋 𝐃𝐎𝐍𝐄 ✅ 𝐓𝐈𝐋𝐋 𝐍𝐎𝐖 ")
+    await m.reply_text("𝐄𝐕𝐄𝐑𝐘𝐓𝐇𝐈𝐍𝐆 𝐈𝐒 𝐃𝐎𝐍𝐄 ☑️ ")
 
 # Advance
 
