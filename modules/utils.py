@@ -1,22 +1,17 @@
 import time
+import asyncio
 
-import math
-
-import os
-
+from datetime import timedelta
 from pyrogram.errors import FloodWait
-
+from vars import CREDIT
 
 
 class Timer:
 
-    def __init__(self, time_between=5):
+    def __init__(self, time_between=3):
 
         self.start_time = time.time()
-
         self.time_between = time_between
-
-
 
     def can_send(self):
 
@@ -29,66 +24,40 @@ class Timer:
         return False
 
 
+timer = Timer()
 
 
-
-from datetime import datetime,timedelta
-
-
-
-#lets do calculations
-
-def hrb(value, digits= 2, delim= "", postfix=""):
-
-    """Return a human-readable file size.
-
-    """
+def hrb(value, digits=2, delim="", postfix=""):
 
     if value is None:
-
         return None
 
     chosen_unit = "B"
 
-    for unit in ("KiB", "MiB", "GiB", "TiB"):
+    for unit in ("KB", "MB", "GB", "TB"):
 
         if value > 1000:
 
             value /= 1024
-
             chosen_unit = unit
 
         else:
-
             break
 
     return f"{value:.{digits}f}" + delim + chosen_unit + postfix
 
 
-
-def hrt(seconds, precision = 0):
-
-    """Return a human-readable time delta as a string.
-
-    """
+def hrt(seconds, precision=0):
 
     pieces = []
 
-    value = timedelta(seconds=seconds)
-
-    
-
-
+    value = timedelta(seconds=int(seconds))
 
     if value.days:
 
         pieces.append(f"{value.days}d")
 
-
-
     seconds = value.seconds
-
-
 
     if seconds >= 3600:
 
@@ -98,8 +67,6 @@ def hrt(seconds, precision = 0):
 
         seconds -= hours * 3600
 
-
-
     if seconds >= 60:
 
         minutes = int(seconds / 60)
@@ -108,90 +75,84 @@ def hrt(seconds, precision = 0):
 
         seconds -= minutes * 60
 
-
-
     if seconds > 0 or not pieces:
 
         pieces.append(f"{seconds}s")
-
-
 
     if not precision:
 
         return "".join(pieces)
 
-
-
     return "".join(pieces[:precision])
 
 
-
-
-
-
-
-timer = Timer()
-
-
-
-# Powered By Ankush
-
 async def progress_bar(current, total, reply, start):
 
-    if timer.can_send():
+    if not timer.can_send():
+        return
 
-        now = time.time()
+    now = time.time()
 
-        diff = now - start
+    elapsed = now - start
 
-        if diff < 1:
+    if elapsed < 1:
+        return
 
-            return
+    speed = current / elapsed
 
-        else:
+    percent = (current / total) * 100
 
-            perc = f"{current * 100 / total:.1f}%"
+    eta_seconds = (
+        (total - current) / speed
+        if speed > 0 else 0
+    )
 
-            elapsed_time = round(diff)
+    bar_length = 12
 
-            speed = current / elapsed_time
+    filled_length = int(
+        bar_length * current // total
+    )
 
-            remaining_bytes = total - current
+    if percent < 30:
+        fill = "▰"
 
-            if speed > 0:
+    elif percent < 70:
+        fill = "⬢"
 
-                eta_seconds = remaining_bytes / speed
+    else:
+        fill = "◆"
 
-                eta = hrt(eta_seconds, precision=1)
+    empty = "◇"
 
-            else:
+    bar = (
+        fill * filled_length
+        + empty * (bar_length - filled_length)
+    )
 
-                eta = "-"
+    elapsed_text = hrt(elapsed, 1)
 
-            sp = str(hrb(speed)) + "/s"
+    msg = (
+        f"╭━━━〔 ⚡ 𝐔𝐋𝐓𝐑𝐀 𝐔𝐏𝐋𝐎𝐀𝐃 ⚡ 〕━━━╮\n"
+        f"┃\n"
+        f"┃ [{bar}]\n"
+        f"┃\n"
+        f"┣ 📈 Progress » {percent:.1f}%\n"
+        f"┣ 🚀 Speed » {hrb(speed)}/s\n"
+        f"┣ 📦 Uploaded » {hrb(current)}\n"
+        f"┣ 💾 Total Size » {hrb(total)}\n"
+        f"┣ ⏳ ETA » {hrt(eta_seconds, 1)}\n"
+        f"┣ 🕒 Time Taken » {elapsed_text}\n"
+        f"┃\n"
+        f"╰━━━〔 ✦ {C@Itz_Sumit} ✦ 〕━━━╯"
+    )
 
-            tot = hrb(total)
+    try:
 
-            cur = hrb(current)
+        await reply.edit(msg)
 
-            bar_length = 11
+    except FloodWait as e:
 
-            completed_length = int(current * bar_length / total)
+        await asyncio.sleep(e.value)
 
-            remaining_length = bar_length - completed_length
-
-            progress_bar = "◆" * completed_length + "◇" * remaining_length
-
-            
-
-            try:
-
-                await reply.edit(f'**╭──⌈📤 𝙐𝙥𝙡𝙤𝙖𝙙𝙞𝙣𝙜 📤⌋──╮ \n┣⪼ [ {progress_bar} ]\n┣⪼ 🚀 𝙎𝙥𝙚𝙚𝙙 : {sp} \n┣⪼ 📈 𝙋𝙧𝙤𝙜𝙧𝙚𝙨𝙨 : {perc} \n┣⪼ ⏳ 𝙇𝙤𝙖𝙙𝙚𝙙 : {cur}\n┣⪼ 🌺 𝙎𝙞𝙯𝙚 :  {tot} \n┣⪼ 🕛 𝙀𝙏𝘼 : {eta} \n╰────⌈ **✪ @Itz_Sumit **✪** ⌋────╯**\n') 
-
-                #await reply.edit(f'`┌ 𝙋𝙧𝙤𝙜𝙧𝙚𝙨𝙨 📈 -【 {perc} 】\n├ 𝙎𝙥𝙚𝙚𝙙 🧲 -【 {sp} 】\n└ 𝙎𝙞𝙯𝙚 📂 -【 {cur} / {tot} 】`')
-
-         #       await reply.edit(f'`╭──⌈📤 𝙐𝙥𝙡𝙤𝙖𝙙𝙞𝙣𝙜 📤⌋──╮ \n├{progress_bar}\n├ 𝙎𝙥𝙚𝙚𝙙 : {sp} \n├ 𝙋𝙧𝙤𝙜𝙧𝙚𝙨𝙨 : {perc} \n├ 𝙇𝙤𝙖𝙙𝙚𝙙 : {cur}\n├ 𝙎𝙞𝙯𝙚 :  {tot} \n├ 𝙀𝙏𝘼 : {eta} \n╰─⌈ Bot Made By Sumit🍁 ⌋─╯`\n') 
-
-            except FloodWait as e:
-
-                time.sleep(e.x)
+    except:
+        pass
