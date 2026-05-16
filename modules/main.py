@@ -161,7 +161,7 @@ async def restart_handler(_, m):
 
 @bot.on_message(filters.command(["baby"]) )
 async def txt_handler(bot: Client, m: Message):
-    editable = await m.reply_text(f"**🍁ʜɪ ɪ'ᴍ ᴘᴏᴡᴇʀꜰᴜʟ ᴛxᴛ ᴅᴏᴡɴʟᴏᴀᴅᴇʀ ʙᴏᴛ Bot.**\n🍁**ꜱᴇɴᴅ ᴀ ᴛxᴛ ꜰɪʟᴇ ᴀɴᴅ ʟᴇᴛ ᴛʜᴇ ᴘʀᴏᴄᴇꜱꜱ ʙᴇɢɪɴ...**")
+    editable = await m.reply_text(f"**🍁ʜɪ ɪ'ᴍ ᴘᴏᴡᴇʀꜰᴜʟ ᴛxᴛ ᴅᴏᴡɴʟᴏᴀᴅᴇʀ ʙᴏᴛ.**\n🍁**ꜱᴇɴᴅ ᴀ ᴛxᴛ ꜰɪʟᴇ ᴀɴᴅ ʟᴇᴛ ᴛʜᴇ ᴘʀᴏᴄᴇꜱꜱ ʙᴇɢɪɴ...**")
     input: Message = await bot.listen(editable.chat.id)
     x = await input.download()
     await input.delete(True)
