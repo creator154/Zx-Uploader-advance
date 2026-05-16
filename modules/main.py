@@ -312,8 +312,26 @@ async def txt_handler(bot: Client, m: Message):
 
             try:  
                 
-                cc = f'**🏷️ Iɴᴅᴇx ID: {str(count).zfill(3)}.\n\n🎞️Tɪᴛʟᴇ: {name1} {res}.mkv\n\n<pre><code>📚 𝗕ᴀᴛᴄʜ: {b_name}</code></pre>\n\n📥 Uᴘʟᴏᴀᴅ Bʏ : </b> {CR}\n\n<pre><code>━━━━━✦𝗭𝗫✦━━━━━</code></pre>'
-                cc1 = f'**🏷️ Iɴᴅᴇx ID: {str(count).zfill(3)}.\n\n📑Tɪᴛʟᴇ: {name1} .pdf\n\n<pre><code>📚 𝗕ᴀᴛᴄʜ: {b_name}</code></pre>\n\n📥 Uᴘʟᴏᴀᴅ Bʏ : </b> {CR}\n\n<pre><code>━━━━━✦𝗭𝗫✦━━━━━</code></pre>'
+                cc = f"""**⇨ Index » {str(count).zfill(3)}
+
+⇨ Title » {name1} {res}.mkv
+
+⇨ Batch » {b_name}
+
+⇨ Quality » {res}
+
+⇨ DOWNLOADED BY : {CR}
+
+<blockquote>━━━━━━✦ZX✦━━━━━━</blockquote>**"""
+                cc1 = f"""**⇨ Index » {str(count).zfill(3)}
+
+⇨ Title » {name1}.pdf
+
+⇨ Batch » {b_name}
+
+⇨ DOWNLOADED BY : {CR}
+
+<blockquote>━━━━━━✦ZX✦━━━━━━</blockquote>**"""
                     
         
                 if "drive" in url:
