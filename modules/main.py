@@ -34,7 +34,7 @@ bot = Client(
     bot_token="8210586901:AAFv_P-Juoma-1qaomqSQSuHUvVreEBJZCw"
 )
 
-my_name = "Zx"
+my_name = "ZX"
 
 cookies_file_path = os.getenv("COOKIES_FILE_PATH", "/modules/youtube_cookies.txt")
 
@@ -384,15 +384,15 @@ async def txt_handler(bot: Client, m: Message):
                         continue                       
                           
                 else:
-                    Show = f"""❊━━━⟱ 𝐃𝐨𝐰𝐧𝐥𝐨𝐚𝐝𝐢𝐧𝐠 ⟱━━━❊
+                    Show = f"""❊━━━⟱ 🚀𝐃𝐨𝐰𝐧𝐥𝐨𝐚𝐝𝐢𝐧𝐠🚀 ⟱━━━❊
 
 📄 𝐓𝐢𝐭𝐥𝐞 » `{name}`
 
 ⌨ 𝐐𝐮𝐚𝐥𝐢𝐭𝐲 » {raw_text2}
 
-<a href="{url}">🤖 𝐀𝐈 𝐒𝐚𝐲𝐬: URl Dekh Kr Kya Kroge 👀</a>
+<a href="{url}">🤖 𝐀𝐈 𝐒𝐚𝐲𝐬: ᴜʀʟ ᴅᴇᴋʜ ᴋᴀʀ ᴋʏᴀ ᴋᴀʀᴏɢᴇ  👀
 
-😎 𝐂𝐨𝐧𝐭𝐚𝐜𝐭 𝐌𝐲 𝐁𝐨𝐬𝐬 » @Itz_Sumit
+ 𝐂𝐨𝐧𝐭𝐚𝐜𝐭 𝐌𝐲 𝐁𝐨𝐬𝐬😎 » @Itz_Sumit
 
 <blockquote>━━━━━━━✦𝗭𝗫✦━━━━━━━</blockquote>"""
                     prog = await m.reply_text(Show)
