@@ -390,9 +390,9 @@ async def txt_handler(bot: Client, m: Message):
 
 ⌨ 𝐐𝐮𝐚𝐥𝐢𝐭𝐲 » {raw_text2}
 
-<a href="{url}">🤖 ᴜʀʟ ᴅᴇᴋʜ ᴋᴀʀ ᴋʏᴀ ᴋᴀʀᴏɢᴇ  👀
+<a href="{url}">🤖Hello » ᴜʀʟ ᴅᴇᴋʜ ᴋᴀʀ ᴋʏᴀ ᴋᴀʀᴏɢᴇ  🤗
 
- 𝐂𝐨𝐧𝐭𝐚𝐜𝐭 𝐌𝐲 𝐁𝐨𝐬𝐬😎 » @Itz_Sumit
+😎 𝐂𝐨𝐧𝐭𝐚𝐜𝐭 𝐌𝐲 𝐁𝐨𝐬𝐬 » @Itz_Sumit
 
 <blockquote>━━━━━━━✦𝗭𝗫✦━━━━━━━</blockquote>"""
                     prog = await m.reply_text(Show)
@@ -628,7 +628,16 @@ async def txt_handler(bot: Client, m: Message):
                         continue                       
                           
                 else:
-                    Show = f"❊⟱ 𝐃𝐨𝐰𝐧𝐥𝐨𝐚𝐝𝐢𝐧𝐠 ⟱❊ »\n\n📄 Title:- `{name}\n\n⌨ 𝐐𝐮𝐥𝐢𝐭𝐲 » {raw_text2}`\n\n**🔗 𝐔𝐑𝐋 »** `{url}`\n\n**𝐁𝐨𝐭 𝐂𝐫𝐞𝐚𝐭𝐞𝐝 𝐁𝐲 ✦ @Itz_Sumit"
+                    Show = f"""❊━━━⟱ 🚀𝐃𝐨𝐰𝐧𝐥𝐨𝐚𝐝𝐢𝐧𝐠🚀 ⟱━━━❊
+
+📄 𝐓𝐢𝐭𝐥𝐞 » `{name}`
+
+⌨ 𝐐𝐮𝐚𝐥𝐢𝐭𝐲 » {raw_text2}
+
+🤖 Hello: ᴜʀʟ ᴅᴇᴋʜ ᴋᴀʀ ᴋʏᴀ ᴋᴀʀᴏɢᴇ 🤗
+
+😎 𝐂𝐨𝐧𝐭𝐚𝐜𝐭 𝐌𝐲 𝐁𝐨𝐬𝐬 » @Itz_Sumit
+"""
                     prog = await m.reply_text(Show)
                     res_file = await helper.download_video(url, cmd, name)
                     filename = res_file
