@@ -105,7 +105,7 @@ async def main():
         
 class Data:
     START = (
-        "🌸 ᴡᴇʟᴄᴏᴍᴇ ᴛᴏ ʙᴀʙʏ 🌸 {0} \n\n"
+        "🦋 ᴡᴇʟᴄᴏᴍᴇ ᴛᴏ ʙᴀʙʏ 🦋 {0} \n\n"
     )
 # Define the start command handler
 @bot.on_message(filters.command("start"))
@@ -148,7 +148,7 @@ async def start(client: Client, msg: Message):
     await asyncio.sleep(1)
     await start_message.edit_text(
         Data.START.format(msg.from_user.mention) +
-        "ᴄʜᴇᴄᴋɪɴɢ ꜱᴛᴀᴛᴜꜱ ᴀᴄᴛɪᴠᴇ... ᴄᴏᴍᴍᴀɴᴅ ᴘᴛᴀ ʜᴀɪ ᴋɪ ɴʜɪ ꜱɪʀᴊɪ 🙃\n"
+        "ᴄʜᴇᴄᴋɪɴɢ ꜱᴛᴀᴛᴜꜱ ᴀᴄᴛɪᴠᴇ... ᴄᴏᴍᴍᴀɴᴅ ᴘᴛᴀ ʜᴀɪ ᴋɪ ɴʜɪ ᴊɪ 🙃\n"
 "ᴄᴏɴᴛᴀᴄᴛ @Itz_Sumit 🔍\n\n"
 "ᴘʀᴏɢʀᴇꜱꜱ:[🟩🟥🟩🟥🟩🟥🟩🟥🟩] 100%"
     )
@@ -161,7 +161,7 @@ async def restart_handler(_, m):
 
 @bot.on_message(filters.command(["baby"]) )
 async def txt_handler(bot: Client, m: Message):
-    editable = await m.reply_text(f"**🍁ʜɪ ɪ'ᴍ ᴘᴏᴡᴇʀꜰᴜʟ ᴛxᴛ ᴅᴏᴡɴʟᴏᴀᴅᴇʀ ʙᴏᴛ📥 Bot.**\n🍁**ꜱᴇɴᴅ ᴀ ᴛxᴛ ꜰɪʟᴇ ᴀɴᴅ ʟᴇᴛ ᴛʜᴇ ᴘʀᴏᴄᴇꜱꜱ ʙᴇɢɪɴ...**")
+    editable = await m.reply_text(f"**🍁ʜɪ ɪ'ᴍ ᴘᴏᴡᴇʀꜰᴜʟ ᴛxᴛ ᴅᴏᴡɴʟᴏᴀᴅᴇʀ ʙᴏᴛ Bot.**\n🍁**ꜱᴇɴᴅ ᴀ ᴛxᴛ ꜰɪʟᴇ ᴀɴᴅ ʟᴇᴛ ᴛʜᴇ ᴘʀᴏᴄᴇꜱꜱ ʙᴇɢɪɴ...**")
     input: Message = await bot.listen(editable.chat.id)
     x = await input.download()
     await input.delete(True)
@@ -312,26 +312,21 @@ async def txt_handler(bot: Client, m: Message):
 
             try:  
                 
-                cc = f"""**⇨ Index » {str(count).zfill(3)}
+                cc = f"""**➭ Index » {str(count).zfill(3)}
+➭ Title » {name1} {res}.mkv
+➭ 𝐁𝐚𝐭𝐜𝐡 » {b_name}
+➭ Quality » {res}
 
-⇨ Title » {name1} {res}.mkv
+➭ 𝐃𝐎𝐖𝐍𝐋𝐎𝐀𝐃𝐄𝐃 𝐁𝐘 : {CR}
 
-⇨ Batch » {b_name}
+<blockquote>━━━━━━━✦𝗭𝗫✦━━━━━━━</blockquote>**"""
+                cc1 = f"""**➭ Index » {str(count).zfill(3)}
+➭ Title » {name1}.pdf
+➭ 𝐁𝐚𝐭𝐜𝐡 » {b_name}
 
-⇨ Quality » {res}
+➭ 𝐃𝐎𝐖𝐍𝐋𝐎𝐀𝐃𝐄𝐃 𝐁𝐘 : {CR}
 
-⇨ DOWNLOADED BY : {CR}
-
-<blockquote>━━━━━━✦ZX✦━━━━━━</blockquote>**"""
-                cc1 = f"""**⇨ Index » {str(count).zfill(3)}
-
-⇨ Title » {name1}.pdf
-
-⇨ Batch » {b_name}
-
-⇨ DOWNLOADED BY : {CR}
-
-<blockquote>━━━━━━✦ZX✦━━━━━━</blockquote>**"""
+<blockquote>━━━━━━━✦𝗭𝗫✦━━━━━━━</blockquote>**"""
                     
         
                 if "drive" in url:
