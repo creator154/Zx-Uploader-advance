@@ -15,7 +15,9 @@ class Timer:
 
     def can_send(self):
 
-        if time.time() > (self.start_time + self.time_between):
+        if time.time() > (
+            self.start_time + self.time_between
+        ):
 
             self.start_time = time.time()
 
@@ -27,63 +29,49 @@ class Timer:
 timer = Timer()
 
 
-def hrb(value, digits=2, delim="", postfix=""):
+def hrb(value, digits=2):
 
     if value is None:
         return None
 
-    chosen_unit = "B"
+    units = ["B", "KB", "MB", "GB", "TB"]
 
-    for unit in ("KB", "MB", "GB", "TB"):
+    for unit in units:
 
-        if value > 1000:
+        if value < 1024:
+            return f"{value:.{digits}f} {unit}"
 
-            value /= 1024
-            chosen_unit = unit
+        value /= 1024
 
-        else:
-            break
-
-    return f"{value:.{digits}f}" + delim + chosen_unit + postfix
+    return f"{value:.{digits}f} PB"
 
 
-def hrt(seconds, precision=0):
+def hrt(seconds):
 
-    pieces = []
+    seconds = int(seconds)
 
-    value = timedelta(seconds=int(seconds))
+    periods = [
 
-    if value.days:
+        ('d', 86400),
+        ('h', 3600),
+        ('m', 60),
+        ('s', 1)
 
-        pieces.append(f"{value.days}d")
+    ]
 
-    seconds = value.seconds
+    result = []
 
-    if seconds >= 3600:
+    for suffix, length in periods:
 
-        hours = int(seconds / 3600)
+        value = seconds // length
 
-        pieces.append(f"{hours}h")
+        if value > 0:
 
-        seconds -= hours * 3600
+            seconds = seconds % length
 
-    if seconds >= 60:
+            result.append(f"{value}{suffix}")
 
-        minutes = int(seconds / 60)
-
-        pieces.append(f"{minutes}m")
-
-        seconds -= minutes * 60
-
-    if seconds > 0 or not pieces:
-
-        pieces.append(f"{seconds}s")
-
-    if not precision:
-
-        return "".join(pieces)
-
-    return "".join(pieces[:precision])
+    return " ".join(result[:2])
 
 
 async def progress_bar(current, total, reply, start):
@@ -100,50 +88,29 @@ async def progress_bar(current, total, reply, start):
 
     speed = current / elapsed
 
-    percent = (current / total) * 100
+    percentage = current * 100 / total
 
-    eta_seconds = (
+    eta = (
         (total - current) / speed
         if speed > 0 else 0
     )
 
-    bar_length = 12
-
-    filled_length = int(
-        bar_length * current // total
-    )
-
-    if percent < 30:
-        fill = "▰"
-
-    elif percent < 70:
-        fill = "⬢"
-
-    else:
-        fill = "◆"
-
-    empty = "◇"
+    completed = int(percentage / 10)
 
     bar = (
-        fill * filled_length
-        + empty * (bar_length - filled_length)
+        "▓" * completed
+        + "░" * (10 - completed)
     )
 
-    elapsed_text = hrt(elapsed, 1)
-
     msg = (
-        f"╭━━━〔 ⚡ 𝐔𝐋𝐓𝐑𝐀 𝐔𝐏𝐋𝐎𝐀𝐃 ⚡ 〕━━━╮\n"
-        f"┃\n"
-        f"┃ [{bar}]\n"
-        f"┃\n"
-        f"┣ 📈 Progress » {percent:.1f}%\n"
+        f"╭━━〔 ⚡ **𝐔𝐋𝐓𝐑𝐀 𝐔𝐏𝐋𝐎𝐀𝐃** ⚡ 〕━━╮\n\n"
+        f"┃ [{bar}] {percentage:.1f}%\n\n"
         f"┣ 🚀 Speed » {hrb(speed)}/s\n"
         f"┣ 📦 Uploaded » {hrb(current)}\n"
-        f"┣ 💾 Total Size » {hrb(total)}\n"
-        f"┣ ⏳ ETA » {hrt(eta_seconds, 1)}\n"
-        f"┣ 🕒 Time Taken » {elapsed_text}\n"
-        f"┃\n"
-        f"╰━━━〔 ✦ {C@Itz_Sumit} ✦ 〕━━━╯"
+        f"┣ 💾 Size » {hrb(total)}\n"
+        f"┣ ⏳ ETA » {hrt(eta)}\n"
+        f"┣ 🕒 Elapsed » {hrt(elapsed)}\n\n"
+        f"╰━━〔 ✦ {CREDIT} ✦ 〕━━╯"
     )
 
     try:
