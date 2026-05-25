@@ -31,7 +31,7 @@ bot = Client(
     "bot",
     api_id=11867213,
     api_hash="d475e13d8cf6937316d9fb8df5a049f9",
-    bot_token="8367993215:AAHg_opT2WGJ0i-szovCVGz9HVy8xvWqRHE"
+    bot_token="8367993215:AAH_LJAfSbiQnLcnQguV12DrfCl_cfCyMMw"
 )
 
 my_name = "ZX"
@@ -149,7 +149,7 @@ async def start(client: Client, msg: Message):
     await start_message.edit_text(
         Data.START.format(msg.from_user.mention) +
         "ᴄʜᴇᴄᴋɪɴɢ ꜱᴛᴀᴛᴜꜱ ᴀᴄᴛɪᴠᴇ... ᴄᴏᴍᴍᴀɴᴅ ᴘᴛᴀ ʜᴀɪ ᴋɪ ɴʜɪ ᴊɪ 🙃\n"
-"ᴄᴏɴᴛᴀᴄᴛ @OXYZEN_ZX 🔍\n\n"
+"ᴄᴏɴᴛᴀᴄᴛ @Oxyzen_Zx 🔍\n\n"
 "ᴘʀᴏɢʀᴇꜱꜱ:[🟩🟥🟩🟥🟩🟥🟩🟥🟩] 100%"
     )
 
@@ -166,7 +166,7 @@ async def txt_handler(bot: Client, m: Message):
     x = await input.download()
     await input.delete(True)
     file_name, ext = os.path.splitext(os.path.basename(x))
-    credit = f"@OXYZEN_ZX"
+    credit = f"@Itz_Sumit"
     token = f"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MzYxNTE3MzAuMTI2LCJkYXRhIjp7Il9pZCI6IjYzMDRjMmY3Yzc5NjBlMDAxODAwNDQ4NyIsInVzZXJuYW1lIjoiNzc2MTAxNzc3MCIsImZpcnN0TmFtZSI6IkplZXYgbmFyYXlhbiIsImxhc3ROYW1lIjoic2FoIiwib3JnYW5pemF0aW9uIjp7Il9pZCI6IjVlYjM5M2VlOTVmYWI3NDY4YTc5ZDE4OSIsIndlYnNpdGUiOiJwaHlzaWNzd2FsbGFoLmNvbSIsIm5hbWUiOiJQaHlzaWNzd2FsbGFoIn0sImVtYWlsIjoiV1dXLkpFRVZOQVJBWUFOU0FIQEdNQUlMLkNPTSIsInJvbGVzIjpbIjViMjdiZDk2NTg0MmY5NTBhNzc4YzZlZiJdLCJjb3VudHJ5R3JvdXAiOiJJTiIsInR5cGUiOiJVU0VSIn0sImlhdCI6MTczNTU0NjkzMH0.iImf90mFu_cI-xINBv4t0jVz-rWK1zeXOIwIFvkrS0M"
     try:    
         with open(x, "r") as f:
@@ -282,10 +282,10 @@ async def txt_handler(bot: Client, m: Message):
              #url = f"https://player.muftukmall.site/?id={id}"
             #elif '/master.mpd' in url:
              #id =  url.split("/")[-2]
-             #url = f"https://anonymouspwplayer-ce3f42358cca.herokuapp.com/pw?url={url}&token={raw_text4}"
+             #url = f"https://anonymouspwplayerr-3cfbfedeb317.herokuapp.com/pw?url={url}&token={raw_text4}"
             #url = f"https://madxapi-d0cbf6ac738c.herokuapp.com/{id}/master.m3u8?token={raw_text4}"
             elif"d1d34p8vz63oiq" in url or "sec1.pw.live" in url:
-             url = f"https://anonymouspwplayer-ce3f42358cca.herokuapp.com/pw?url={url}&token={raw_text4}"
+             url = f"https://anonymouspwplayerr-3cfbfedeb317.herokuapp.com/pw?url={url}&token={raw_text4}"
                      
                                                          
             name1 = links[i][0].replace("\t", "").replace(":", "").replace("/", "").replace("+", "").replace("#", "").replace("|", "").replace("@", "").replace("*", "").replace(".", "").replace("https", "").replace("http", "").strip()
@@ -305,7 +305,7 @@ async def txt_handler(bot: Client, m: Message):
                 cmd = f'yt-dlp -o "{name}.mp4" "{url}"'
 
             elif "youtube.com" in url or "youtu.be" in url:
-    cmd = f'yt-dlp --cookies youtube_cookies.txt --no-check-certificate -f "{ytf}" "{url}" -o "{name}.mp4"'
+                cmd = f'yt-dlp --cookies youtube_cookies.txt -f "{ytf}" "{url}" -o "{name}".mp4'
 
             else:
                 cmd = f'yt-dlp -f "{ytf}" "{url}" -o "{name}.mp4"'
@@ -405,7 +405,7 @@ async def txt_handler(bot: Client, m: Message):
 
             except Exception as e:
                 await m.reply_text(
-                    f"⌘ 𝐃𝐨𝐰𝐧𝐥𝐨𝐚𝐝𝐢𝐧𝐠 𝐈𝐧𝐭𝐞𝐫𝐮𝐩𝐭𝐞𝐝\n\n⌘ 𝐍𝐚𝐦𝐞 » {name}\n⌘ 𝐋𝐢𝐧𝐤 » `https://t.me/+Oxyzen_Zx`"
+                    f"⌘ 𝐃𝐨𝐰𝐧𝐥𝐨𝐚𝐝𝐢𝐧𝐠 𝐈𝐧𝐭𝐞𝐫𝐮𝐩𝐭𝐞𝐝\n\n⌘ 𝐍𝐚𝐦𝐞 » {name}\n⌘ 𝐋𝐢𝐧𝐤 » `https://t.me/+OXYZEN_ZX`"
                 )
                 continue
 
@@ -458,7 +458,7 @@ async def txt_handler(bot: Client, m: Message):
     input2: Message = await bot.listen(editable.chat.id)
     raw_text2 = input2.text
     await input2.delete(True)
-    try:
+   try:
         if raw_text2 == "144":
             res = "256x144"
         elif raw_text2 == "240":
@@ -476,7 +476,7 @@ async def txt_handler(bot: Client, m: Message):
     except Exception:
             res = "UN"
     
-    await editable.edit("**Enter Your Name or send 'zx' for use default.\n Eg : @Itz_Sumit**")
+    await editable.edit("**Enter Your Name or send 'zx' for use default.\n Eg : @OXYZEN_ZX**")
     input3: Message = await bot.listen(editable.chat.id)
     raw_text3 = input3.text
     await input3.delete(True)
@@ -636,7 +636,7 @@ async def txt_handler(bot: Client, m: Message):
 
 🤖 Hello: ᴜʀʟ ᴅᴇᴋʜ ᴋᴀʀ ᴋʏᴀ ᴋᴀʀᴏɢᴇ 🤗
 
-😎 𝐂𝐨𝐧𝐭𝐚𝐜𝐭 𝐌𝐲 𝐁𝐨𝐬𝐬 » @Oxyzen_Zx
+😎 𝐂𝐨𝐧𝐭𝐚𝐜𝐭 𝐌𝐲 𝐁𝐨𝐬𝐬 » @OXYZEN_ZX
 """
                     prog = await m.reply_text(Show)
                     res_file = await helper.download_video(url, cmd, name)
