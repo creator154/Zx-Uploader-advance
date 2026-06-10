@@ -31,7 +31,7 @@ bot = Client(
     "bot",
     api_id=37721193,
     api_hash="ed5cbbc0e14a777e1b2deb0c3f763874",
-    bot_token="8893764854:AAHmBpsa8SPSmiL4E9DYr3LyLAdsXml0kZc"
+    bot_token="8889799148:AAFYRye_exXAReksNgepCto_wgYdMkg91yk"
 )
 
 my_name = "ZX"
