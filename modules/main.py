@@ -325,53 +325,21 @@ async def txt_handler(bot: Client, m: Message):
                 cmd = f'yt-dlp -f "{ytf}" "{url}" -o "{name}.mp4"'
 
             try:  
-                
-                cc = f"""**➭ Index » {str(count).zfill(3)}
-➭ Title » {name1} {res}.mkv
-➭ 𝐁𝐚𝐭𝐜𝐡 » {b_name}
-try:  
-    cc = f"""**➭ Index » {str(count).zfill(3)}
-➭ Title » {name1} {res}.mkv
-➭ 𝐁𝐚𝐭𝐜𝐡 » {b_name}
-➭ Quality » {res}
+    cc = f"""**>> Index : {str(count).zfill(3)}
+>> Title : {name1} {res}.mkv
+>> Batch : {b_name}
+>> Quality : {res}
 
-➭ 𝐃𝐎𝐖𝐍𝐋𝐎𝐀𝐃𝐄𝐃 𝐁𝐘 : {CR}\n\n<pre><code>━━━━━✦𝗭𝗫✦━━━━━</code></pre>**"""
-    cc1 = f"""**➭ Index » {str(count).zfill(3)}
-➭ Title » {name1}.pdf
-➭ 𝐁𝐚𝐭𝐜𝐡 » {b_name}
+>> DOWNLOADED BY : {CR}
 
-➭ 𝐃𝐎𝐖𝐍𝐋𝐎𝐀𝐃𝐄𝐃 𝐁𝐘 : {CR}\n\n<pre><code>━━━━━✦𝗭𝗫✦━━━━━</code></pre>**"""
-        
-    if "drive" in url:
-        try:
-            ka = await helper.download(url, name)
-            copy = await bot.send_document(chat_id=m.chat.id, document=ka, caption=cc1)
-            count += 1
-            os.remove(ka)
-            time.sleep(1)
-        except FloodWait as e:
-            await m.reply_text(str(e))
-            time.sleep(e.x)
-            continue
+-----ZX-----**"""
+    cc1 = f"""**>> Index : {str(count).zfill(3)}
+>> Title : {name1}.pdf
+>> Batch : {b_name}
 
-    elif ".pdf" in url:
-        try:
-            await asyncio.sleep(4)
-            url = url.replace(" ", "%20")
-            scraper = cloudscraper.create_scraper()
-            response = scraper.get(url)
-try:  
-    cc = f"""**> Index » {str(count).zfill(3)}
-> Title » {name1} {res}.mkv
-> Batch » {b_name}
-> Quality » {res}
+>> DOWNLOADED BY : {CR}
 
-> DOWNLOADED BY : {CR}\n\n<pre><code>━━━━━✦ZX✦━━━━━</code></pre>**"""
-    cc1 = f"""**> Index » {str(count).zfill(3)}
-> Title » {name1}.pdf
-> Batch » {b_name}
-
-> DOWNLOADED BY : {CR}\n\n<pre><code>━━━━━✦ZX✦━━━━━</code></pre>**"""
+-----ZX-----**"""
         
     if "drive" in url:
         try:
@@ -409,17 +377,17 @@ try:
             continue
 
     else:
-        Show = f"""❊━━━⟱ 🚀DOWNLOADING🚀 ⟱━━━❊
+        Show = f"""=== 🚀 DOWNLOADING 🚀 ===
 
-📄 Title » `{name}`
+Title : {name}
 
-⌨ Quality » {raw_text2}
+Quality : {raw_text2}
 
-<a href="{url}">🤖Hello » URL dekh kar kya karoge 🤗
+URL : {url}
 
-😎 Contact My Bos » @Itz_Sumit
+Contact : @Itz_Sumit
 
-<blockquote>━━━━━━━✦ZX✦━━━━━━━</blockquote>"""
+-----ZX-----"""
         prog = await m.reply_text(Show)
         res_file = await helper.download_video(url, cmd, name)
         filename = res_file
@@ -439,15 +407,14 @@ try:
 
 except Exception as e:
     await m.reply_text(
-        f"⌘ DOWNLOADING INTERUPTED\n⌘ Name » {name}\n⌘ Link » `https://t.me/+Itz_Sumit`"
+        f"DOWNLOADING INTERRUPTED\nName : {name}\nLink : https://t.me/+Itz_Sumit"
     )
     continue
 
 except Exception as e:
     await m.reply_text(str(e))
 
-await m.reply_text("EVERYTHING IS DONE ☑️ ")
-
+await m.reply_text("EVERYTHING IS DONE ✓")
 # Advance
 
 @bot.on_message(filters.command(["baby2"]) )
