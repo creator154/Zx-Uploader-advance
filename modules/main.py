@@ -327,6 +327,9 @@ async def txt_handler(bot: Client, m: Message):
             try:
     cc = f"""**>> Index : {str(count).zfill(3)}
 >> Title : {name1} {res}.mkv
+try:
+    cc = f"""**>> Index : {str(count).zfill(3)}
+>> Title : {name1} {res}.mkv
 >> Batch : {b_name}
 >> Quality : {res}
 
