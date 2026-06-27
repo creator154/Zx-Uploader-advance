@@ -325,21 +325,22 @@ async def txt_handler(bot: Client, m: Message):
                 cmd = f'yt-dlp -f "{ytf}" "{url}" -o "{name}.mp4"'
 
             try:
-    cc = f"""**>> Index : {str(count).zfill(3)}
-    >> Title : {name1} {res}.mkv
-    >> Batch : {b_name}
-    >> Quality : {res}
+                
+                cc = f"""**>> Index : {str(count).zfill(3)}
+                >> Title : {name1} {res}.mkv
+                >> Batch : {b_name}
+                >> Quality : {res}
 
-    >> DOWNLOADED BY : {CR}
+                >> DOWNLOADED BY : {CR}
 
-    -----ZX-----**"""
+                -----ZX-----**"""
     cc1 = f"""**>> Index : {str(count).zfill(3)}
-    >> Title : {name1}.pdf
-    >> Batch : {b_name}
+          >> Title : {name1}.pdf
+          >> Batch : {b_name}
 
-    >> DOWNLOADED BY : {CR}
+          >> DOWNLOADED BY : {CR}
 
-    -----ZX-----**"""
+          -----ZX-----**"""
     
     if "drive" in url:
         try:
