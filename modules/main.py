@@ -237,8 +237,22 @@ async def txt_handler(bot: Client, m: Message):
         MR = token
     else:
         MR = raw_text4
+
+    await editable.edit("**Watermark lagana hai \n\nSend yes for ON, no for OFF\nYa direct text bhejo jo watermark me likhna hai\nEg: @Itz_Sumit**")
+    input5: Message = await bot.listen(editable.chat.id)
+    raw_text5 = input5.text
+    await input5.delete(True)
+    if raw_text5.lower() == 'no':
+        wm_on = False
+        wm_text = ""
+    elif raw_text5.lower() == 'yes':
+        wm_on = True
+        wm_text = CR
+    else:
+        wm_on = True
+        wm_text = raw_text5
         
-    await editable.edit("Now send the **Thumb url**\n**Eg :** ``\n\nor Send `no`")
+    await editable.edit("Now send the **Thumb url**\n**Eg :** \n\nor Send no")
     input6 = message = await bot.listen(editable.chat.id)
     raw_text6 = input6.text
     await input6.delete(True)
