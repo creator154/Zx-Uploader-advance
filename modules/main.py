@@ -324,7 +324,8 @@ async def txt_handler(bot: Client, m: Message):
             else:
                 cmd = f'yt-dlp -f "{ytf}" "{url}" -o "{name}.mp4"'
 
-            try:  
+            try:
+                    
     cc = f"""**>> Index : {str(count).zfill(3)}
 >> Title : {name1} {res}.mkv
 >> Batch : {b_name}
