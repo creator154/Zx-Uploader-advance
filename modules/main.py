@@ -325,35 +325,35 @@ async def txt_handler(bot: Client, m: Message):
                 cmd = f'yt-dlp -f "{ytf}" "{url}" -o "{name}.mp4"'
 
             try:
-....cc = f"""**>> Index : {str(count).zfill(3)}
-....>> Title : {name1} {res}.mkv
-....>> Batch : {b_name}
-....>> Quality : {res}
-....
-....>> DOWNLOADED BY : {CR}
-....
-....-----ZX-----**"""
-....cc1 = f"""**>> Index : {str(count).zfill(3)}
-....>> Title : {name1}.pdf
-....>> Batch : {b_name}
-....
-....>> DOWNLOADED BY : {CR}
-....
-....-----ZX-----**"""
-    
-....if "drive" in url:
-........try:
-............ka = await helper.download(url, name)
-............copy = await bot.send_document(chat_id=m.chat.id, document=ka, caption=cc1)
-............count += 1
-............os.remove(ka)
-............time.sleep(1)
-........except FloodWait as e:
-............await m.reply_text(str(e))
-............time.sleep(e.x)
-............continue
+    cc = f"""**>> Index : {str(count).zfill(3)}
+    >> Title : {name1} {res}.mkv
+    >> Batch : {b_name}
+    >> Quality : {res}
 
-....elif ".pdf" in url:
+    >> DOWNLOADED BY : {CR}
+
+    -----ZX-----**"""
+    cc1 = f"""**>> Index : {str(count).zfill(3)}
+    >> Title : {name1}.pdf
+    >> Batch : {b_name}
+
+    >> DOWNLOADED BY : {CR}
+
+    -----ZX-----**"""
+    
+    if "drive" in url:
+        try:
+            ka = await helper.download(url, name)
+            copy = await bot.send_document(chat_id=m.chat.id, document=ka, caption=cc1)
+            count += 1
+            os.remove(ka)
+            time.sleep(1)
+        except FloodWait as e:
+            await m.reply_text(str(e))
+            time.sleep(e.x)
+            continue
+
+    elif ".pdf" in url:
         try:
             await asyncio.sleep(4)
             url = url.replace(" ", "%20")
