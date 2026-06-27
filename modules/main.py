@@ -406,14 +406,23 @@ async def txt_handler(bot: Client, m: Message):
 
 <a href="{url}">🤖Hello » ᴜʀʟ ᴅᴇᴋʜ ᴋᴀʀ ᴋʏᴀ ᴋᴀʀᴏɢᴇ  🤗
 
-😎 𝐂𝐨𝐧𝐭𝐚𝐜𝐭 𝐌𝐲 𝐁𝐨𝐬𝐬 » @Itz_Sumit
+😎 𝐂𝐨𝐧𝐭𝐚𝐜𝐭 𝐌𝐲 𝐁𝐨𝐬 » @Itz_Sumit
 
 <blockquote>━━━━━━━✦𝗭𝗫✦━━━━━━━</blockquote>"""
-                    prog = await m.reply_text(Show)
-                    res_file = await helper.download_video(url, cmd, name)
-                    filename = res_file
-                    await prog.delete(True)
-                    await helper.send_vid(bot, m, cc, filename, thumb, name, prog)
+prog = await m.reply_text(Show)
+res_file = await helper.download_video(url, cmd, name)
+filename = res_file
+
+if wm_on == True and wm_text != "":
+    watermarked = f"{name}_wm.mp4"
+    wm_text = wm_text.replace("'", "\\'")
+    cmd_wm = f'''ffmpeg -i "{filename}" -vf "drawtext=text='{wm_text}':fontcolor=white@0.5:fontsize=26:x=w*t/12:y=h/2,scale=trunc(iw/2)*2:trunc(ih/2)*2" -c:a copy -preset ultrafast "{watermarked}"'''
+    subprocess.run(cmd_wm, shell=True, capture_output=True)
+    os.remove(filename)
+    filename = watermarked
+
+await prog.delete(True)
+await helper.send_vid(bot, m, cc, filename, thumb, name, prog)
                     count += 1
                     time.sleep(1)
 
