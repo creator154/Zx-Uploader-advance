@@ -322,33 +322,68 @@ async def txt_handler(bot: Client, m: Message):
                 cmd = f'yt-dlp --cookies youtube_cookies.txt -f "{ytf}" "{url}" -o "{name}".mp4'
 
             else:
-                cmd = f'yt-dlp -f "{ytf}" "{url}" -o "{name}.mp4"'
+    cmd = f'yt-dlp -f "{ytf}" "{url}" -o "{name}.mp4"'
 
-            try:
-                
-                cc = f"""**>> Index : {str(count).zfill(3)}
-                >> Title : {name1} {res}.mkv
-                >> Batch : {b_name}
-                >> Quality : {res}
+try:
 
-                >> DOWNLOADED BY : {CR}
+    cc = f"""**>> Index : {str(count).zfill(3)}
+>> Title : {name1} {res}.mkv
+>> Batch : {b_name}
+>> Quality : {res}
 
-                -----ZX-----**"""
+>> DOWNLOADED BY : {CR}
+
+-----ZX-----**"""
+
     cc1 = f"""**>> Index : {str(count).zfill(3)}
-          >> Title : {name1}.pdf
-          >> Batch : {b_name}
+>> Title : {name1}.pdf
+>> Batch : {b_name}
 
-          >> DOWNLOADED BY : {CR}
+>> DOWNLOADED BY : {CR}
 
-          -----ZX-----**"""
-    
+-----ZX-----**"""
+
     if "drive" in url:
         try:
             ka = await helper.download(url, name)
-            copy = await bot.send_document(chat_id=m.chat.id, document=ka, caption=cc1)
+            copy = await bot.send_document(
+                chat_id=m.chat.id,
+                document=ka,
+                caption=cc1
+            )
             count += 1
             os.remove(ka)
             time.sleep(1)
+
+        except FloodWait as e:
+            await m.reply_text(str(e))
+            time.sleep(e.x)
+            continue
+
+    elif ".pdf" in url:
+        try:
+            await asyncio.sleep(4)
+            url = url.replace(" ", "%20")
+            scraper = cloudscraper.create_scraper()
+            response = scraper.get(url)
+
+            if response.status_code == 200:
+                with open(f"{name}.pdf", "wb") as file:
+                    file.write(response.content)
+
+                await asyncio.sleep(4)
+                copy = await bot.send_document(
+                    chat_id=m.chat.id,
+                    document=f"{name}.pdf",
+                    caption=cc1
+                )
+                count += 1
+                os.remove(f"{name}.pdf")
+            else:
+                await m.reply_text(
+                    f"Failed to download PDF: {response.status_code} {response.reason}"
+                )
+
         except FloodWait as e:
             await m.reply_text(str(e))
             time.sleep(e.x)
