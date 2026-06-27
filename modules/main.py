@@ -360,6 +360,37 @@ try:
             url = url.replace(" ", "%20")
             scraper = cloudscraper.create_scraper()
             response = scraper.get(url)
+try:  
+    cc = f"""**> Index » {str(count).zfill(3)}
+> Title » {name1} {res}.mkv
+> Batch » {b_name}
+> Quality » {res}
+
+> DOWNLOADED BY : {CR}\n\n<pre><code>━━━━━✦ZX✦━━━━━</code></pre>**"""
+    cc1 = f"""**> Index » {str(count).zfill(3)}
+> Title » {name1}.pdf
+> Batch » {b_name}
+
+> DOWNLOADED BY : {CR}\n\n<pre><code>━━━━━✦ZX✦━━━━━</code></pre>**"""
+        
+    if "drive" in url:
+        try:
+            ka = await helper.download(url, name)
+            copy = await bot.send_document(chat_id=m.chat.id, document=ka, caption=cc1)
+            count += 1
+            os.remove(ka)
+            time.sleep(1)
+        except FloodWait as e:
+            await m.reply_text(str(e))
+            time.sleep(e.x)
+            continue
+
+    elif ".pdf" in url:
+        try:
+            await asyncio.sleep(4)
+            url = url.replace(" ", "%20")
+            scraper = cloudscraper.create_scraper()
+            response = scraper.get(url)
 
             if response.status_code == 200:
                 with open(f'{name}.pdf', 'wb') as file:
@@ -378,17 +409,17 @@ try:
             continue
 
     else:
-        Show = f"""❊━━━⟱ 🚀𝐃𝐨𝐰𝐧𝐥𝐨𝐚𝐝𝐢𝐧𝐠🚀 ⟱━━━❊
+        Show = f"""❊━━━⟱ 🚀DOWNLOADING🚀 ⟱━━━❊
 
-📄 𝐓𝐢𝐭𝐥𝐞 » `{name}`
+📄 Title » `{name}`
 
-⌨ 𝐐𝐮𝐚𝐥𝐢𝐭𝐲 » {raw_text2}
+⌨ Quality » {raw_text2}
 
-<a href="{url}">🤖Hello » ᴜʀʟ ᴅᴇᴋʜ ᴋᴀʀ ᴋʏᴀ ᴋᴀʀᴏɢᴇ  🤗
+<a href="{url}">🤖Hello » URL dekh kar kya karoge 🤗
 
-😎 𝐂𝐨𝐧𝐭𝐚𝐜𝐭 𝐌𝐲 𝐁𝐨𝐬 » @Itz_Sumit
+😎 Contact My Bos » @Itz_Sumit
 
-<blockquote>━━━━━━━✦𝗭𝗫✦━━━━━━━</blockquote>"""
+<blockquote>━━━━━━━✦ZX✦━━━━━━━</blockquote>"""
         prog = await m.reply_text(Show)
         res_file = await helper.download_video(url, cmd, name)
         filename = res_file
@@ -408,14 +439,14 @@ try:
 
 except Exception as e:
     await m.reply_text(
-        f"⌘ 𝐃𝐨𝐰𝐧𝐥𝐨𝐚𝐝𝐢𝐧𝐠 𝐈𝐧𝐭𝐞𝐫𝐮𝐩𝐭𝐞𝐝\n⌘ 𝐍𝐚𝐦𝐞 » {name}\n⌘ 𝐋𝐢𝐧𝐤 » `https://t.me/+Itz_Sumit`"
+        f"⌘ DOWNLOADING INTERUPTED\n⌘ Name » {name}\n⌘ Link » `https://t.me/+Itz_Sumit`"
     )
     continue
 
 except Exception as e:
     await m.reply_text(str(e))
 
-await m.reply_text("𝐄𝐕𝐄𝐑𝐘𝐓𝐇𝐈𝐍𝐆 𝐈𝐒 𝐃𝐎𝐍𝐄 ☑️ ")
+await m.reply_text("EVERYTHING IS DONE ☑️ ")
 
 # Advance
 
