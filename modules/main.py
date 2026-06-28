@@ -384,43 +384,40 @@ async def txt_handler(bot: Client, m: Message):
                         continue                       
                           
                 else:
-                    Show = f"""❊━━━⟱ 🚀𝐃𝐨𝐰𝐧𝐥𝐨𝐚𝐝𝐢𝐧𝐠🚀 ⟱━━━❊
+    Show = f"""❊━━━⟱ 🚀𝐃𝐨𝐰𝐧𝐥𝐨𝐚𝐝𝐢𝐧𝐠🚀 ⟱━━━❊
 
 📄 𝐓𝐢𝐭𝐥𝐞 » `{name}`
 
 ⌨ 𝐐𝐮𝐚𝐥𝐢𝐭𝐲 » {raw_text2}
 
-<a href="{url}">🤖Hello » ᴜʀʟ ᴅᴇᴋʜ ᴋᴀʀ ᴋʏᴀ ᴋᴀʀᴏɢᴇ  🤗
+<a href="{url}">🤖Hello » ᴜʀʟ ᴅᴇᴋʜ ᴋᴀʀ ᴋʏᴀ ᴋᴀʀᴏɢᴇ 🤗
 
 😎 𝐂𝐨𝐧𝐭𝐚𝐜𝐭 𝐌𝐲 𝐁𝐨𝐬𝐬 » @Itz_Sumit
 
 <blockquote>━━━━━━━✦𝗭𝗫✦━━━━━━━</blockquote>"""
-                    prog = await m.reply_text(Show)
 
-res_file = await helper.download_video(url, cmd, name)
-filename = res_file
+    prog = await m.reply_text(Show)
 
-# ===== MOVING WATERMARK =====
-watermark = CR.replace("@", "")
+    res_file = await helper.download_video(url, cmd, name)
+    filename = res_file
 
-wm_file = f"wm_{filename}"
+    # ===== MOVING WATERMARK =====
+    watermark = CR.replace("@", "")
+    wm_file = f"wm_{filename}"
 
-os.system(
-    f'''ffmpeg -y -i "{filename}" -vf "drawtext=text='{watermark}':
-fontcolor=white:fontsize=30:borderw=2:bordercolor=black:
-x=mod(t*120\\,(w-text_w)):
-y=mod(t*70\\,(h-text_h))" -codec:a copy "{wm_file}"'''
-)
+    os.system(
+        f'''ffmpeg -y -i "{filename}" -vf "drawtext=text='{watermark}':fontcolor=white:fontsize=30:borderw=2:bordercolor=black:x=mod(t*120\\,(w-text_w)):y=mod(t*70\\,(h-text_h))" -codec:a copy "{wm_file}"'''
+    )
 
-if os.path.exists(wm_file):
-    os.remove(filename)
-    filename = wm_file
-# ============================
+    if os.path.exists(wm_file):
+        os.remove(filename)
+        filename = wm_file
+    # ============================
 
-await prog.delete(True)
-await helper.send_vid(bot, m, cc, filename, thumb, name, prog)
-                    count += 1
-                    time.sleep(1)
+    await prog.delete(True)
+    await helper.send_vid(bot, m, cc, filename, thumb, name, prog)
+    count += 1
+    time.sleep(1)
 
             except Exception as e:
                 await m.reply_text(
