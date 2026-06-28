@@ -396,10 +396,29 @@ async def txt_handler(bot: Client, m: Message):
 
 <blockquote>━━━━━━━✦𝗭𝗫✦━━━━━━━</blockquote>"""
                     prog = await m.reply_text(Show)
-                    res_file = await helper.download_video(url, cmd, name)
-                    filename = res_file
-                    await prog.delete(True)
-                    await helper.send_vid(bot, m, cc, filename, thumb, name, prog)
+
+res_file = await helper.download_video(url, cmd, name)
+filename = res_file
+
+# ===== MOVING WATERMARK =====
+watermark = CR.replace("@", "")
+
+wm_file = f"wm_{filename}"
+
+os.system(
+    f'''ffmpeg -y -i "{filename}" -vf "drawtext=text='{watermark}':
+fontcolor=white:fontsize=30:borderw=2:bordercolor=black:
+x=mod(t*120\\,(w-text_w)):
+y=mod(t*70\\,(h-text_h))" -codec:a copy "{wm_file}"'''
+)
+
+if os.path.exists(wm_file):
+    os.remove(filename)
+    filename = wm_file
+# ============================
+
+await prog.delete(True)
+await helper.send_vid(bot, m, cc, filename, thumb, name, prog)
                     count += 1
                     time.sleep(1)
 
