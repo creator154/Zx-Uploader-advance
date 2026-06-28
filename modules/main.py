@@ -201,8 +201,9 @@ async def txt_handler(bot: Client, m: Message):
     await editable.edit("**Enter resolution.\n Eg : 480 or 720**")
     input2: Message = await bot.listen(editable.chat.id)
     raw_text2 = input2.text
-    await input2.delete(True)
-        try:
+        await input2.delete(True)
+
+    try:
         if raw_text2 == "144":
             res = "256x144"
         elif raw_text2 == "240":
