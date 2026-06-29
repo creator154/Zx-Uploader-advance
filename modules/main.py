@@ -220,23 +220,23 @@ try:
         res = "UN"
 except Exception:
     res = "UN"
-    
-    # ===== Watermark =====
-    await editable.edit("**Enter Watermark Text\nSend /d for No Watermark**")
-    input_wm: Message = await bot.listen(editable.chat.id)
-    WM = input_wm.text
-    await input_wm.delete(True)
-    # =====================
 
-    await editable.edit("**Enter Your Name or send 'zx' for use default.\n Eg : @Itz_Sumit **")
-    input3: Message = await bot.listen(editable.chat.id)
-    raw_text3 = input3.text
-    await input3.delete(True)
+# ===== Watermark =====
+await editable.edit("**Enter Watermark Text\nSend /d for No Watermark**")
+input_wm: Message = await bot.listen(editable.chat.id)
+WM = input_wm.text
+await input_wm.delete(True)
+# =====================
 
-    if raw_text3 == 'de':
-        CR = credit
-    else:
-        CR = raw_text3
+await editable.edit("**Enter Your Name or send 'zx' for use default.\n Eg : @Itz_Sumit **")
+input3: Message = await bot.listen(editable.chat.id)
+raw_text3 = input3.text
+await input3.delete(True)
+
+if raw_text3 == 'de':
+    CR = credit
+else:
+    CR = raw_text3
 
     await editable.edit("**Enter Your PW Token For 𝐌𝐏𝐃 𝐔𝐑𝐋 or send '/Zx' for use default**")
     input4: Message = await bot.listen(editable.chat.id)
