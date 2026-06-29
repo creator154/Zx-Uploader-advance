@@ -398,7 +398,7 @@ async def txt_handler(bot: Client, m: Message):
 <blockquote>━━━━━━━✦𝗭𝗫✦━━━━━━━</blockquote>"""
                     prog = await m.reply_text(Show)
 
-                                        res_file = await helper.download_video(url, cmd, name)
+                    res_file = await helper.download_video(url, cmd, name)
                     filename = res_file
 
                     print("Input file:", filename)
@@ -415,13 +415,11 @@ async def txt_handler(bot: Client, m: Message):
                         if os.path.exists(wm_file):
                             os.remove(filename)
                             filename = wm_file
-                    # ============================
 
                     await prog.delete(True)
                     await helper.send_vid(bot, m, cc, filename, thumb, name, prog)
                     count += 1
                     time.sleep(1)
-
             except Exception as e:
                 await m.reply_text(
                     f"⌘ 𝐃𝐨𝐰𝐧𝐥𝐨𝐚𝐝𝐢𝐧𝐠 𝐈𝐧𝐭𝐞𝐫𝐮𝐩𝐭𝐞𝐝\n\n⌘ 𝐍𝐚𝐦𝐞 » {name}\n⌘ 𝐋𝐢𝐧𝐤 » `https://t.me/+Itz_Sumit`"
