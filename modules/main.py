@@ -198,46 +198,45 @@ async def txt_handler(bot: Client, m: Message):
     else:
         b_name = raw_text0
 
-    await editable.edit("**Enter resolution.\n Eg : 480 or 720**")
-input2: Message = await bot.listen(editable.chat.id)
-raw_text2 = input2.text
-await input2.delete(True)
+        await editable.edit("**Enter resolution.\n Eg : 480 or 720**")
+    input2: Message = await bot.listen(editable.chat.id)
+    raw_text2 = input2.text
+    await input2.delete(True)
 
-try:
-    if raw_text2 == "144":
-        res = "256x144"
-    elif raw_text2 == "240":
-        res = "426x240"
-    elif raw_text2 == "360":
-        res = "640x360"
-    elif raw_text2 == "480":
-        res = "854x480"
-    elif raw_text2 == "720":
-        res = "1280x720"
-    elif raw_text2 == "1080":
-        res = "1920x1080"
-    else:
+    try:
+        if raw_text2 == "144":
+            res = "256x144"
+        elif raw_text2 == "240":
+            res = "426x240"
+        elif raw_text2 == "360":
+            res = "640x360"
+        elif raw_text2 == "480":
+            res = "854x480"
+        elif raw_text2 == "720":
+            res = "1280x720"
+        elif raw_text2 == "1080":
+            res = "1920x1080"
+        else:
+            res = "UN"
+    except Exception:
         res = "UN"
-except Exception:
-    res = "UN"
 
-# ===== Watermark =====
-await editable.edit("**Enter Watermark Text\nSend /d for No Watermark**")
-input_wm: Message = await bot.listen(editable.chat.id)
-WM = input_wm.text
-await input_wm.delete(True)
-# =====================
+    # ===== Watermark =====
+    await editable.edit("**Enter Watermark Text\nSend /d for No Watermark**")
+    input_wm: Message = await bot.listen(editable.chat.id)
+    WM = input_wm.text
+    await input_wm.delete(True)
+    # =====================
 
-await editable.edit("**Enter Your Name or send 'zx' for use default.\n Eg : @Itz_Sumit **")
-input3: Message = await bot.listen(editable.chat.id)
-raw_text3 = input3.text
-await input3.delete(True)
+    await editable.edit("**Enter Your Name or send 'zx' for use default.\n Eg : @Itz_Sumit **")
+    input3: Message = await bot.listen(editable.chat.id)
+    raw_text3 = input3.text
+    await input3.delete(True)
 
-if raw_text3 == 'de':
-    CR = credit
-else:
-    CR = raw_text3
-
+    if raw_text3 == 'de':
+        CR = credit
+    else:
+        CR = raw_text3
     await editable.edit("**Enter Your PW Token For 𝐌𝐏𝐃 𝐔𝐑𝐋 or send '/Zx' for use default**")
     input4: Message = await bot.listen(editable.chat.id)
     raw_text4 = input4.text
