@@ -199,28 +199,28 @@ async def txt_handler(bot: Client, m: Message):
         b_name = raw_text0
 
     await editable.edit("**Enter resolution.\n Eg : 480 or 720**")
-    input2: Message = await bot.listen(editable.chat.id)
-    raw_text2 = input2.text
-            await input2.delete(True)
+input2: Message = await bot.listen(editable.chat.id)
+raw_text2 = input2.text
+await input2.delete(True)
 
-    try:
-        if raw_text2 == "144":
-            res = "256x144"
-        elif raw_text2 == "240":
-            res = "426x240"
-        elif raw_text2 == "360":
-            res = "640x360"
-        elif raw_text2 == "480":
-            res = "854x480"
-        elif raw_text2 == "720":
-            res = "1280x720"
-        elif raw_text2 == "1080":
-            res = "1920x1080"
-        else:
-            res = "UN"
-    except Exception:
+try:
+    if raw_text2 == "144":
+        res = "256x144"
+    elif raw_text2 == "240":
+        res = "426x240"
+    elif raw_text2 == "360":
+        res = "640x360"
+    elif raw_text2 == "480":
+        res = "854x480"
+    elif raw_text2 == "720":
+        res = "1280x720"
+    elif raw_text2 == "1080":
+        res = "1920x1080"
+    else:
         res = "UN"
-
+except Exception:
+    res = "UN"
+    
     # ===== Watermark =====
     await editable.edit("**Enter Watermark Text\nSend /d for No Watermark**")
     input_wm: Message = await bot.listen(editable.chat.id)
