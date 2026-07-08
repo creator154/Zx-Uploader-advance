@@ -197,16 +197,13 @@ def old_download(url, file_name, chunk_size=1024 * 1024):
 
 
 def human_readable_size(size, decimal_places=2):
-
-for unit in ['B', 'KB', 'MB', 'GB', 'TB', 'PB']:
-
+    for unit in ['B', 'KB', 'MB', 'GB', 'TB', 'PB']:
         if size < 1024.0 or unit == 'PB':
             break
 
         size /= 1024.0
 
     return f"{size:.{decimal_places}f} {unit}"
-
 
 def time_name():
     date = datetime.date.today()
@@ -398,12 +395,11 @@ async def send_doc(
     name
 ):
 
-    reply = await m.reply_text(
+        reply = await m.reply_text(
         f"Uploading » {name}"
     )
 
-await asyncio.sleep(1)
-
+    await asyncio.sleep(1)
     start_time = time.time()
 
     await m.reply_document(
