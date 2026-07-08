@@ -323,7 +323,6 @@ elif "youtube.com" in url or "youtu.be" in url:
 
 else:
     cmd = f'yt-dlp -f "{ytf}" "{url}" -o "{name}.mp4"'
-
 try:
     cc = f"""**>> Index : {str(count).zfill(3)}
 >> Title : {name1} {res}.mkv
