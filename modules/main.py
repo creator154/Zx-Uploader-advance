@@ -147,10 +147,10 @@ await start_message.edit_text(
 "ᴘʀᴏɢʀᴇꜱꜱ:[🟩🟥🟩🟥🟩🟥🟩🟥🟩] 100%"
 )
 
-@bot.on_message(filters.command(["stop"]) )
+@bot.on_message(filters.command(["stop"]))
 async def restart_handler(_, m):
-await m.reply_text("STOPPED🛑", True)
-os.execl(sys.executable, sys.executable, *sys.argv)
+    await m.reply_text("STOPPED 🛑", quote=True)
+    os.execl(sys.executable, sys.executable, *sys.argv)
 
 @bot.on_message(filters.command(["baby"]) )
 async def txt_handler(bot: Client, m: Message):
