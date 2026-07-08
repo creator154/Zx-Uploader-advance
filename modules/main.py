@@ -52,63 +52,42 @@ async def web_server():
     return web_app
 
 async def start_bot():
-await bot.start()
-print("Bot is up and running")
+    await bot.start()
+    print("Bot is up and running")
+
 
 async def stop_bot():
-await bot.stop()
+    await bot.stop()
+
 
 async def main():
-if WEBHOOK:
-# Start the web server
-app_runner = web.AppRunner(await web_server())
-await app_runner.setup()
-site = web.TCPSite(app_runner, "0.0.0.0", PORT)
-await site.start()
-print(f"Web server started on port {PORT}")
+    if WEBHOOK:
+        # Start the web server
+        app_runner = web.AppRunner(await web_server())
+        await app_runner.setup()
+        site = web.TCPSite(app_runner, "0.0.0.0", PORT)
+        await site.start()
+        print(f"Web server started on port {PORT}")
 
-# Start the bot  
-await start_bot()  
+    # Start the bot
+    await start_bot()
 
-# Keep the program running  
-try:  
-    while True:  
-        await bot.polling()  # Run forever, or until interrupted  
-except (KeyboardInterrupt, SystemExit):  
-    await stop_bot()
+    # Keep the program running
+    try:
+        while True:
+            await asyncio.sleep(3600)
+    except (KeyboardInterrupt, SystemExit):
+        await stop_bot()
 
-async def start_bot():
-await bot.start()
-print("Bot is up and running")
-
-async def stop_bot():
-await bot.stop()
-
-async def main():
-if WEBHOOK:
-# Start the web server
-app_runner = web.AppRunner(await web_server())
-await app_runner.setup()
-site = web.TCPSite(app_runner, "0.0.0.0", PORT)
-await site.start()
-print(f"Web server started on port {PORT}")
-
-# Start the bot  
-await start_bot()  
-
-# Keep the program running  
-try:  
-    while True:  
-        await asyncio.sleep(3600)  # Run forever, or until interrupted  
-except (KeyboardInterrupt, SystemExit):  
-    await stop_bot()
 
 class Data:
-START = (
-"🦋 ᴡᴇʟᴄᴏᴍᴇ ᴛᴏ ʙᴀʙʏ 🦋 {0} \n\n"
-)
+    START = (
+        "🦋 ᴡᴇʟᴄᴏᴍᴇ ᴛᴏ ʙᴀʙʏ 🦋 {0}\n\n"
+    )
 
-Define the start command handler
+
+# Define the start command handler
+
 
 @bot.on_message(filters.command("start"))
 async def start(client: Client, msg: Message):
