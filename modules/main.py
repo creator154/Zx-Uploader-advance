@@ -304,7 +304,7 @@ try:
             ytf = f"b[height<={raw_text2}]/bv[height<={raw_text2}]+ba/b/bv+ba"  
           
         if "jw-prod" in url:
-    cmd = f'yt-dlp -o "{name}.mp4" "{url}"'
+            cmd = f'yt-dlp -o "{name}.mp4" "{url}"'
 
 elif "youtube.com" in url or "youtu.be" in url:
     continue
