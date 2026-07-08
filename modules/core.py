@@ -395,11 +395,12 @@ async def send_doc(
     name
 ):
 
-        reply = await m.reply_text(
+    reply = await m.reply_text(
         f"Uploading » {name}"
     )
 
     await asyncio.sleep(1)
+
     start_time = time.time()
 
     await m.reply_document(
