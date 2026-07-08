@@ -168,17 +168,20 @@ file_name, ext = os.path.splitext(os.path.basename(x))
 credit = f"@Itz_Sumit"
 token = f"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MzYxNTE3MzAuMTI2LCJkYXRhIjp7Il9pZCI6IjYzMDRjMmY3Yzc5NjBlMDAxODAwNDQ4NyIsInVzZXJuYW1lIjoiNzc2MTAxNzc3MCIsImZpcnN0TmFtZSI6IkplZXYgbmFyYXlhbiIsImxhc3ROYW1lIjoic2FoIiwib3JnYW5pemF0aW9uIjp7Il9pZCI6IjVlYjM5M2VlOTVmYWI3NDY4YTc5ZDE4OSIsIndlYnNpdGUiOiJwaHlzaWNzd2FsbGFoLmNvbSIsIm5hbWUiOiJQaHlzaWNzd2FsbGFoIn0sImVtYWlsIjoiV1dXLkpFRVZOQVJBWUFOU0FIQEdNQUlMLkNPTSIsInJvbGVzIjpbIjViMjdiZDk2NTg0MmY5NTBhNzc4YzZlZiJdLCJjb3VudHJ5R3JvdXAiOiJJTiIsInR5cGUiOiJVU0VSIn0sImlhdCI6MTczNTU0NjkzMH0.iImf90mFu_cI-xINBv4t0jVz-rWK1zeXOIwIFvkrS0M"
 try:
-with open(x, "r") as f:
-content = f.read()
-content = content.split("\n")
-links = []
-for i in content:
-links.append(i.split("://", 1))
-os.remove(x)
-except:
-await m.reply_text("Invalid file input.")
-os.remove(x)
-return
+    with open(x, "r") as f:
+        content = f.read()
+        content = content.split("\n")
+        links = []
+
+        for i in content:
+            links.append(i.split("://", 1))
+
+    os.remove(x)
+
+except Exception:
+    await m.reply_text("Invalid file input.")
+    os.remove(x)
+    return
 
 await editable.edit(f"Total links found are **{len(links)}**\n\nSend From where you want to download initial is **1**")  
 input0: Message = await bot.listen(editable.chat.id)  
