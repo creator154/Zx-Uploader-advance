@@ -1,97 +1,125 @@
-# Don't Remove Credit @AnkitShakyaX
-import time
-import math
-import os
-from pyrogram.errors import FloodWait
-
-class Timer:
-    def __init__(self, time_between=5):
-        self.start_time = time.time()
-        self.time_between = time_between
-
-    def can_send(self):
-        if time.time() > (self.start_time + self.time_between):
-            self.start_time = time.time()
-            return True
-        return False
-
-
-from datetime import datetime,timedelta
-
-def hrb(value, digits= 2, delim= "", postfix=""):
-    """Return a human-readable file size.
-    """
-    if value is None:
-        return None
-    chosen_unit = "B"
-    for unit in ("KiB", "MiB", "GiB", "TiB"):
-        if value > 1000:
-            value /= 1024
-            chosen_unit = unit
-        else:
-            break
-    return f"{value:.{digits}f}" + delim + chosen_unit + postfix
-
-def hrt(seconds, precision = 0):
-    """Return a human-readable time delta as a string.
-    """
-    pieces = []
-    value = timedelta(seconds=seconds)
-    
-
-    if value.days:
-        pieces.append(f"{value.days}d")
-
-    seconds = value.seconds
-
-    if seconds >= 3600:
-        hours = int(seconds / 3600)
-        pieces.append(f"{hours}h")
-        seconds -= hours * 3600
-
-    if seconds >= 60:
-        minutes = int(seconds / 60)
-        pieces.append(f"{minutes}m")
-        seconds -= minutes * 60
-
-    if seconds > 0 or not pieces:
-        pieces.append(f"{seconds}s")
-
-    if not precision:
-        return "".join(pieces)
-
-    return "".join(pieces[:precision])
-
-
-
-timer = Timer()
-
-async def progress_bar(current, total, reply, start):
-    if timer.can_send():
-        now = time.time()
-        diff = now - start
-        if diff < 1:
-            return
-        else:
-            perc = f"{current * 100 / total:.1f}%"
-            elapsed_time = round(diff)
-            speed = current / elapsed_time
-            remaining_bytes = total - current
-            if speed > 0:
-                eta_seconds = remaining_bytes / speed
-                eta = hrt(eta_seconds, precision=1)
-            else:
-                eta = "-"
-            sp = str(hrb(speed)) + "/s"
-            tot = hrb(total)
-            cur = hrb(current)
-            bar_length = 11
-            completed_length = int(current * bar_length / total)
-            remaining_length = bar_length - completed_length
-            progress_bar = "◆" * completed_length + "◇" * remaining_length
-                
-            try:
-                await reply.edit(f'╭──⌯══ 𝗨𝗽𝗹𝗼𝗮𝗱𝗶𝗻𝗴 📤 ══⌯──╮\n├⚡ {progress_bar}\n├⚙️ Progress ➤ | {perc} |\n├🚀 Speed ➤ | {sp} |\n├📟 Processed ➤ | {cur} |\n├🧲 Size ➤ | {tot} |\n├🕑 ETA ➤ | {eta} |\n╰─══✨ जाटⁱˢß𝐚𝐜𝐤ツ ✨══─╯') 
-            except FloodWait as e:
-                time.sleep(e.x)
-                
+import time 
+import asyncio 
+ 
+from datetime import timedelta 
+from pyrogram.errors import FloodWait 
+from vars import CREDIT 
+ 
+ 
+class Timer: 
+ 
+    def init(self, time_between=3): 
+ 
+        self.start_time = time.time() 
+        self.time_between = time_between 
+ 
+    def can_send(self): 
+ 
+        if time.time() > ( 
+            self.start_time + self.time_between 
+        ): 
+ 
+            self.start_time = time.time() 
+ 
+            return True 
+ 
+        return False 
+ 
+ 
+timer = Timer() 
+ 
+ 
+def hrb(value, digits=2): 
+ 
+    if value is None: 
+        return None 
+ 
+    units = ["B", "KB", "MB", "GB", "TB"] 
+ 
+    for unit in units: 
+ 
+        if value < 1024: 
+            return f"{value:.{digits}f} {unit}" 
+ 
+        value /= 1024 
+ 
+    return f"{value:.{digits}f} PB" 
+ 
+ 
+def hrt(seconds): 
+ 
+    seconds = int(seconds) 
+ 
+    periods = [ 
+ 
+        ('d', 86400), 
+        ('h', 3600), 
+        ('m', 60), 
+        ('s', 1) 
+ 
+    ] 
+ 
+    result = [] 
+ 
+    for suffix, length in periods: 
+ 
+        value = seconds // length 
+ 
+        if value > 0: 
+ 
+            seconds = seconds % length 
+ 
+            result.append(f"{value}{suffix}") 
+ 
+    return " ".join(result[:2]) 
+ 
+ 
+async def progress_bar(current, total, reply, start): 
+ 
+    if not timer.can_send(): 
+        return 
+ 
+    now = time.time() 
+ 
+    elapsed = now - start 
+ 
+    if elapsed < 1: 
+        return 
+ 
+    speed = current / elapsed 
+ 
+    percentage = current * 100 / total 
+ 
+    eta = ( 
+        (total - current) / speed 
+        if speed > 0 else 0 
+    ) 
+ 
+    completed = int(percentage / 10) 
+ 
+    bar = ( 
+        "▓" * completed 
+        + "░" * (10 - completed) 
+    ) 
+ 
+    msg = ( 
+        f"╭━━〔 ⚡ 𝐔𝐋𝐓𝐑𝐀 𝐔𝐏𝐋𝐎𝐀𝐃 ⚡ 〕━━╮\n\n" 
+        f"┃ [{bar}] {percentage:.1f}%\n\n" 
+        f"┣ 🚀 Speed » {hrb(speed)}/s\n" 
+        f"┣ 📦 Uploaded » {hrb(current)}\n" 
+        f"┣ 💾 Size » {hrb(total)}\n" 
+        f"┣ ⏳ ETA » {hrt(eta)}\n" 
+        f"┣ 🕒 Elapsed » {hrt(elapsed)}\n\n" 
+        f"╰━━〔 ✦ {CREDIT} ✦ 〕━━╯" 
+    ) 
+ 
+    try: 
+ 
+        await reply.edit(msg) 
+ 
+    except FloodWait as e: 
+ 
+        await asyncio.sleep(e.value) 
+ 
+    except: 
+        pass
