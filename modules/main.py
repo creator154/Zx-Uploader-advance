@@ -91,7 +91,19 @@ class Data:
 
 @bot.on_message(filters.command("start"))
 async def start(client: Client, msg: Message):
-user = await client.get_me()
+    user = await client.get_me()
+    mention = user.mention
+
+    start_message = await client.send_message(
+        msg.chat.id,
+        Data.START.format(msg.from_user.mention)
+    )
+
+    await asyncio.sleep(1)
+    await start_message.edit_text(
+        Data.START.format(msg.from_user.mention)
+        + "Initializing Uploader bot... 🤖"
+    )
 mention = user.mention
 start_message = await client.send_message(
 msg.chat.id,
