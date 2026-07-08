@@ -30,9 +30,9 @@ Initialize the bot
 
 bot = Client(
 "bot",
-api_id=11867213,
-api_hash="d475e13d8cf6937316d9fb8df5a049f9",
-bot_token="8753481555:AAFOijGVEk5huZnARmIUDKVzmUITifo8SNc"
+api_id=37721193,
+api_hash="ed5cbbc0e14a777e1b2deb0c3f763874",
+bot_token="8968575531:AAFcmfNCEIxyCrXdK0R-13zuLZ0QghE3zfY"
 )
 
 my_name = "ZX"
