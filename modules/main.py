@@ -38,10 +38,8 @@ my_name = "ZX"
 
 cookies_file_path = os.getenv("COOKIES_FILE_PATH", "/modules/youtube_cookies.txt")
 
-Define aiohttp routes
-
+ # Define aiohttp routes
 routes = web.RouteTableDef()
-
 @routes.get("/", allow_head=True)
 async def root_route_handler(request):
 return web.json_response("https://text-leech-bot-for-render.onrender.com/")
