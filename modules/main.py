@@ -26,13 +26,12 @@ from pyrogram.errors.exceptions.bad_request_400 import StickerEmojiInvalid
 from pyrogram.types.messages_and_media import message
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 
-Initialize the bot
-
+# Initialize the bot
 bot = Client(
-"bot",
-api_id=37721193,
-api_hash="ed5cbbc0e14a777e1b2deb0c3f763874",
-bot_token="8968575531:AAFcmfNCEIxyCrXdK0R-13zuLZ0QghE3zfY"
+    "bot",
+    api_id=37721193,
+    api_hash="ed5cbbc0e14a777e1b2deb0c3f763874",
+    bot_token="8968575531:AAFcmfNCEIxyCrXdK0R-13zuLZ0QghE3zfY"
 )
 
 my_name = "ZX"
