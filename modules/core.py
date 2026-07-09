@@ -20,33 +20,46 @@ from yt_dlp import YoutubeDL
 import yt_dlp as youtube_dl
 
 def duration(filename):
-result = subprocess.run(["ffprobe", "-v", "error", "-show_entries",
-"format=duration", "-of",
-"default=noprint_wrappers=1:nokey=1", filename],
-stdout=subprocess.PIPE,
-stderr=subprocess.STDOUT)
-return float(result.stdout)
+    result = subprocess.run(
+        [
+            "ffprobe",
+            "-v", "error",
+            "-show_entries", "format=duration",
+            "-of", "default=noprint_wrappers=1:nokey=1",
+            filename,
+        ],
+        stdout=subprocess.PIPE,
+        stderr=subprocess.STDOUT,
+    )
+    return float(result.stdout)
+
 
 def exec(cmd):
-process = subprocess.run(cmd, stdout=subprocess.PIPE,stderr=subprocess.PIPE)
-output = process.stdout.decode()
-print(output)
-return output
-#err = process.stdout.decode()
-def pull_run(work, cmds):
-with concurrent.futures.ThreadPoolExecutor(max_workers=work) as executor:
-print("Waiting for tasks to complete")
-fut = executor.map(exec,cmds)
-async def aio(url,name):
-k = f'{name}.pdf'
-async with aiohttp.ClientSession() as session:
-async with session.get(url) as resp:
-if resp.status == 200:
-f = await aiofiles.open(k, mode='wb')
-await f.write(await resp.read())
-await f.close()
-return k
+    process = subprocess.run(
+        cmd,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE
+    )
+    output = process.stdout.decode()
+    print(output)
+    return output
 
+
+def pull_run(work, cmds):
+    with concurrent.futures.ThreadPoolExecutor(max_workers=work) as executor:
+        print("Waiting for tasks to complete")
+        executor.map(exec, cmds)
+
+
+async def aio(url, name):
+    k = f"{name}.pdf"
+    async with aiohttp.ClientSession() as session:
+        async with session.get(url) as resp:
+            if resp.status == 200:
+                f = await aiofiles.open(k, mode="wb")
+                await f.write(await resp.read())
+                await f.close()
+                return k
 async def download(url,name):
 ka = f'{name}.pdf'
 async with aiohttp.ClientSession() as session:
