@@ -459,7 +459,7 @@ async def txt_handler(bot: Client, m: Message):
     raw_text2 = input2.text
     await input2.delete(True)
 
-try:
+    try:
         if raw_text2 == "144":
             res = "256x144"
         elif raw_text2 == "240":
@@ -471,11 +471,11 @@ try:
         elif raw_text2 == "720":
             res = "1280x720"
         elif raw_text2 == "1080":
-            res = "1920x1080" 
-        else: 
+            res = "1920x1080"
+        else:
             res = "UN"
     except Exception:
-            res = "UN"
+        res = "UN"
     
     await editable.edit("**Enter Your Name or send 'zx' for use default.\n Eg : @Itz_Sumit**")
     input3: Message = await bot.listen(editable.chat.id)
