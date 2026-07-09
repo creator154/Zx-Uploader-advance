@@ -74,6 +74,7 @@ async def download(url, name):
 def parse_vid_info(info):
     info = info.strip()
     info = info.split("\n")
+
     new_info = []
     temp = []
 
