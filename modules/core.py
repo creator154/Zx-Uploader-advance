@@ -60,35 +60,45 @@ async def aio(url, name):
                 await f.write(await resp.read())
                 await f.close()
                 return k
-async def download(url,name):
-ka = f'{name}.pdf'
-async with aiohttp.ClientSession() as session:
-async with session.get(url) as resp:
-if resp.status == 200:
-f = await aiofiles.open(ka, mode='wb')
-await f.write(await resp.read())
-await f.close()
-return ka
+async def download(url, name):
+    ka = f"{name}.pdf"
+    async with aiohttp.ClientSession() as session:
+        async with session.get(url) as resp:
+            if resp.status == 200:
+                f = await aiofiles.open(ka, mode="wb")
+                await f.write(await resp.read())
+                await f.close()
+                return ka
+
 
 def parse_vid_info(info):
-info = info.strip()
-info = info.split("\n")
-new_info = []
-temp = []
-for i in info:
-i = str(i)
-if "[" not in i and '---' not in i:
-while "  " in i:
-i = i.replace("  ", " ")
-i.strip()
-i = i.split("|")[0].split(" ",2)
-try:
-if "RESOLUTION" not in i[2] and i[2] not in temp and "audio" not in i[2]:
-temp.append(i[2])
-new_info.append((i[0], i[2]))
-except:
-pass
-return new_info
+    info = info.strip()
+    info = info.split("\n")
+    new_info = []
+    temp = []
+
+    for i in info:
+        i = str(i)
+
+        if "[" not in i and "---" not in i:
+            while "  " in i:
+                i = i.replace("  ", " ")
+
+            i = i.strip()
+            i = i.split("|")[0].split(" ", 2)
+
+            try:
+                if (
+                    "RESOLUTION" not in i[2]
+                    and i[2] not in temp
+                    and "audio" not in i[2]
+                ):
+                    temp.append(i[2])
+                    new_info.append((i[0], i[2]))
+            except Exception:
+                pass
+
+    return new_info
 
 def vid_info(info):
 info = info.strip()
