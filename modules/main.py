@@ -31,7 +31,7 @@ bot = Client(
     "bot",
     api_id=37721193,
     api_hash="ed5cbbc0e14a777e1b2deb0c3f763874",
-    bot_token="8968575531:AAFcmfNCEIxyCrXdK0R-13zuLZ0QghE3zfY"
+    bot_token="8889799148:AAGYkXg93NzzIPlaQYnq5clfxu7NbIH7kLo"
 )
 
 my_name = "ZX"
@@ -166,7 +166,7 @@ async def txt_handler(bot: Client, m: Message):
     x = await input.download()
     await input.delete(True)
     file_name, ext = os.path.splitext(os.path.basename(x))
-    credit = f"@Itz_Sumit"
+    credit = f"@SumitTripathi"
     token = f"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MzYxNTE3MzAuMTI2LCJkYXRhIjp7Il9pZCI6IjYzMDRjMmY3Yzc5NjBlMDAxODAwNDQ4NyIsInVzZXJuYW1lIjoiNzc2MTAxNzc3MCIsImZpcnN0TmFtZSI6IkplZXYgbmFyYXlhbiIsImxhc3ROYW1lIjoic2FoIiwib3JnYW5pemF0aW9uIjp7Il9pZCI6IjVlYjM5M2VlOTVmYWI3NDY4YTc5ZDE4OSIsIndlYnNpdGUiOiJwaHlzaWNzd2FsbGFoLmNvbSIsIm5hbWUiOiJQaHlzaWNzd2FsbGFoIn0sImVtYWlsIjoiV1dXLkpFRVZOQVJBWUFOU0FIQEdNQUlMLkNPTSIsInJvbGVzIjpbIjViMjdiZDk2NTg0MmY5NTBhNzc4YzZlZiJdLCJjb3VudHJ5R3JvdXAiOiJJTiIsInR5cGUiOiJVU0VSIn0sImlhdCI6MTczNTU0NjkzMH0.iImf90mFu_cI-xINBv4t0jVz-rWK1zeXOIwIFvkrS0M"
     try:    
         with open(x, "r") as f:
@@ -220,7 +220,7 @@ async def txt_handler(bot: Client, m: Message):
     except Exception:
             res = "UN"
     
-    await editable.edit("**Enter Your Name or send 'zx' for use default.\n Eg :@Itz_Sumit **")
+    await editable.edit("**Enter Your Name or send 'zx' for use default.\n Eg :@SumitTripathi **")
     input3: Message = await bot.listen(editable.chat.id)
     raw_text3 = input3.text
     await input3.delete(True)
@@ -392,7 +392,7 @@ async def txt_handler(bot: Client, m: Message):
 
 <a href="{url}">🤖Hello » ᴜʀʟ ᴅᴇᴋʜ ᴋᴀʀ ᴋʏᴀ ᴋᴀʀᴏɢᴇ  🤗
 
-😎 𝐂𝐨𝐧𝐭𝐚𝐜𝐭 𝐌𝐲 𝐁𝐨𝐬𝐬 » @Itz_Sumit
+😎 𝐂𝐨𝐧𝐭𝐚𝐜𝐭 𝐌𝐲 𝐁𝐨𝐬𝐬 » @SumitTripathi
 
 <blockquote>━━━━━━━✦𝗭𝗫✦━━━━━━━</blockquote>"""
                     prog = await m.reply_text(Show)
@@ -477,7 +477,7 @@ async def txt_handler(bot: Client, m: Message):
     except Exception:
         res = "UN"
     
-    await editable.edit("**Enter Your Name or send 'zx' for use default.\n Eg : @Itz_Sumit**")
+    await editable.edit("**Enter Your Name or send 'zx' for use default.\n Eg : @SumitTripathi**")
     input3: Message = await bot.listen(editable.chat.id)
     raw_text3 = input3.text
     await input3.delete(True)
@@ -637,7 +637,7 @@ async def txt_handler(bot: Client, m: Message):
 
 🤖 Hello: ᴜʀʟ ᴅᴇᴋʜ ᴋᴀʀ ᴋʏᴀ ᴋᴀʀᴏɢᴇ 🤗
 
-😎 𝐂𝐨𝐧𝐭𝐚𝐜𝐭 𝐌𝐲 𝐁𝐨𝐬𝐬 » @Itz_Sumit
+😎 𝐂𝐨𝐧𝐭𝐚𝐜𝐭 𝐌𝐲 𝐁𝐨𝐬𝐬 » @SumitTripathi
 """
                     prog = await m.reply_text(Show)
                     res_file = await helper.download_video(url, cmd, name)
