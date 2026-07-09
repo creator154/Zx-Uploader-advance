@@ -6,11 +6,10 @@ from pyrogram.errors import FloodWait
 from vars import CREDIT 
  
  
-class Timer: 
- 
-    def init(self, time_between=3): 
- 
-        self.start_time = time.time() 
+class Timer:
+
+    def __init__(self, time_between=3):
+        self.start_time = time.time()
         self.time_between = time_between 
  
     def can_send(self): 
