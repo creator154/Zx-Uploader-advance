@@ -149,7 +149,7 @@ async def start(client: Client, msg: Message):
     await start_message.edit_text(
         Data.START.format(msg.from_user.mention) +
         "ᴄʜᴇᴄᴋɪɴɢ ꜱᴛᴀᴛᴜꜱ ᴀᴄᴛɪᴠᴇ... ᴄᴏᴍᴍᴀɴᴅ ᴘᴛᴀ ʜᴀɪ ᴋɪ ɴʜɪ ᴊɪ 🙃\n"
-"ᴄᴏɴᴛᴀᴄᴛ @Itz_Sumit 🔍\n\n"
+"ᴄᴏɴᴛᴀᴄᴛ @SumitTripathi 🔍\n\n"
 "ᴘʀᴏɢʀᴇꜱꜱ:[🟩🟥🟩🟥🟩🟥🟩🟥🟩] 100%"
     )
 
@@ -282,10 +282,10 @@ async def txt_handler(bot: Client, m: Message):
              #url = f"https://player.muftukmall.site/?id={id}"
             #elif '/master.mpd' in url:
              #id =  url.split("/")[-2]
-             #url = f"https://anonymouspwplayerrrr-c95d81521328.herokuapp.com/pw?url={url}&token={raw_text4}"
+             #url = f"https://anonymouspwplayeer-2038df9c1dbd.herokuapp.com/pw?url={url}&token={raw_text4}"
             #url = f"https://madxapi-d0cbf6ac738c.herokuapp.com/{id}/master.m3u8?token={raw_text4}"
             elif"d1d34p8vz63oiq" in url or "sec1.pw.live" in url:
-             url = f"https://anonymouspwplayerrrr-c95d81521328.herokuapp.com/pw?url={url}&token={raw_text4}"
+             url = f"https://anonymouspwplayeer-2038df9c1dbd.herokuapp.com/pw?url={url}&token={raw_text4}"
                      
                                                          
             name1 = links[i][0].replace("\t", "").replace(":", "").replace("/", "").replace("+", "").replace("#", "").replace("|", "").replace("@", "").replace("*", "").replace(".", "").replace("https", "").replace("http", "").strip()
