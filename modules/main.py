@@ -406,7 +406,7 @@ async def txt_handler(bot: Client, m: Message):
                     count += 1
                     time.sleep(1)
 
-                except Exception as e:
+            except Exception as e:
                 await m.reply_text(
                     f"⌘ 𝐃𝐨𝐰𝐧𝐥𝐨𝐚𝐝𝐢𝐧𝐠 𝐈𝐧𝐭𝐞𝐫𝐮𝐩𝐭𝐞𝐝\n\n⌘ 𝐍𝐚𝐦𝐞 » {name}\n⌘ 𝐋𝐢𝐧𝐤 » `{url}`"
                 )
