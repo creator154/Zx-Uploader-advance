@@ -384,8 +384,20 @@ async def txt_handler(bot: Client, m: Message):
                         time.sleep(e.x)
                         continue
 
+                elif '/master.mpd' in url or "/dash/" in url or ".mp4?" in url or "?Signature=" in url or "d1d34p8vz63oiq.cloudfront.net" in url or "parentId=" in url or "childId=" in url:
+                    Show = f"❊━━━⟱ 🚀𝐃𝐨𝐰𝐧𝐥𝐨𝐚𝐝𝐢𝐧𝐠🚀 ⟱━━━❊\n\n📄 𝐓𝐢𝐭𝐥𝐞 » `{name}`\n\n⌨ 𝐐𝐮𝐚𝐥𝐢𝐭𝐲 » {raw_text2}\n\n🔗 Url <a href= {url} >__**CLICK HERE**__</a>\n  🤗😎 𝐂𝐨𝐧𝐭𝐚𝐜𝐭 𝐌𝐲 𝐁𝐨𝐬𝐬 » @SumitTripathi\n\n<blockquote>━━━━━━━✦𝗭𝗫✦━━━━━━━</blockquote>"""
+                    prog = await m.reply_text(Show)
+                    output_filename = f"{name}.mp4"
+                    res_file = pwdlx_video(url, output_filename)
+                    filename = res_file
+                    await prog.delete(True)
+                    await helper.send_vid(bot, m, cc, filename, thumb, name, prog)
+                    count += 1
+                    time.sleep(1)
+                    continue
+                    
                 else:
-                    Show = f"❊━━━⟱ 🚀𝐃𝐨𝐰𝐧𝐥𝐨𝐚𝐝𝐢𝐧𝐠🚀 ⟱━━━❊\n\n📄 𝐓𝐢𝐭𝐥𝐞 » `{name}`\n\n⌨ 𝐐𝐮𝐚𝐥𝐢𝐭𝐲 » {raw_text2}\n\n <a href={url}> \n🤖Hello » ᴜʀʟ ᴅᴇᴋʜ ᴋᴀʀ ᴋʏᴀ ᴋᴀʀᴏɢᴇ 🤗😎 𝐂𝐨𝐧𝐭𝐚𝐜𝐭 𝐌𝐲 𝐁𝐨𝐬𝐬 » @SumitTripathi\n\n<blockquote>━━━━━━━✦𝗭𝗫✦━━━━━━━</blockquote>"""
+                    Show = f"❊━━━⟱ 🚀𝐃𝐨𝐰𝐧𝐥𝐨𝐚𝐝𝐢𝐧𝐠🚀 ⟱━━━❊\n\n📄 𝐓𝐢𝐭𝐥𝐞 » `{name}`\n\n⌨ 𝐐𝐮𝐚𝐥𝐢𝐭𝐲 » {raw_text2}\n\n🔗 Url <a href= {url} >__**CLICK HERE**__</a>\n  🤗😎 𝐂𝐨𝐧𝐭𝐚𝐜𝐭 𝐌𝐲 𝐁𝐨𝐬𝐬 » @SumitTripathi\n\n<blockquote>━━━━━━━✦𝗭𝗫✦━━━━━━━</blockquote>"""
                     prog = await m.reply_text(Show)
                     res_file = await helper.download_video(url, cmd, name)
                     filename = res_file
@@ -393,16 +405,16 @@ async def txt_handler(bot: Client, m: Message):
                     await helper.send_vid(bot, m, cc, filename, thumb, name, prog)
                     count += 1
                     time.sleep(1)
-except Exception as e:
-    await m.reply_text(
-        f"⌘ 𝐃𝐨𝐰𝐧𝐥𝐨𝐚𝐝𝐢𝐧𝐠 𝐈𝐧𝐭𝐞𝐫𝐮𝐩𝐭𝐞𝐝\n\n⌘ 𝐍𝐚𝐦𝐞 » {name}\n⌘ 𝐋𝐢𝐧𝐤 » `https://t.me/+Itz_Sumit`"
-    )
-    continue
 
-except Exception as e:
-    await m.reply_text(e)
+                except Exception as e:
+                await m.reply_text(
+                    f"⌘ 𝐃𝐨𝐰𝐧𝐥𝐨𝐚𝐝𝐢𝐧𝐠 𝐈𝐧𝐭𝐞𝐫𝐮𝐩𝐭𝐞𝐝\n\n⌘ 𝐍𝐚𝐦𝐞 » {name}\n⌘ 𝐋𝐢𝐧𝐤 » `{url}`"
+                )
+                continue
 
-await m.reply_text("𝐄𝐕𝐄𝐑𝐘𝐓𝐇𝐈𝐍𝐆 𝐈𝐒 𝐃𝐎𝐍𝐄 ☑️")
+    except Exception as e:
+        await m.reply_text(e)
+    await m.reply_text("𝐄𝐕𝐄𝐑𝐘𝐓𝐇𝐈𝐍𝐆 𝐈𝐒 𝐃𝐎𝐍𝐄 ☑️")
 # Advance
 
 @bot.on_message(filters.command(["baby2"]) )
