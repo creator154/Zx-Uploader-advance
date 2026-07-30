@@ -367,62 +367,77 @@ async def txt_handler(bot: Client, m: Message):
                         continue
 
                 elif ".pdf" in url:
-                    try:
-                        await asyncio.sleep(4)
+    try:
+        await asyncio.sleep(4)
+
         # Replace spaces with %20 in the URL
-                        url = url.replace(" ", "%20")
- 
+        url = url.replace(" ", "%20")
+
         # Create a cloudscraper session
-                        scraper = cloudscraper.create_scraper()
+        scraper = cloudscraper.create_scraper()
 
         # Send a GET request to download the PDF
-                        response = scraper.get(url)
+        response = scraper.get(url)
 
         # Check if the response status is OK
-                        if response.status_code == 200:
+        if response.status_code == 200:
             # Write the PDF content to a file
-                            with open(f'{name}.pdf', 'wb') as file:
-                                file.write(response.content)
+            with open(f'{name}.pdf', 'wb') as file:
+                file.write(response.content)
 
             # Send the PDF document
-                            await asyncio.sleep(4)
-                            copy = await bot.send_document(chat_id=m.chat.id, document=f'{name}.pdf', caption=cc1)
-                            count += 1
+            await asyncio.sleep(4)
+            copy = await bot.send_document(
+                chat_id=m.chat.id,
+                document=f'{name}.pdf',
+                caption=cc1
+            )
+            count += 1
 
             # Remove the PDF file after sending
-                            os.remove(f'{name}.pdf')
-                        else:
-                            await m.reply_text(f"Failed to download PDF: {response.status_code} {response.reason}")
+            os.remove(f'{name}.pdf')
+        else:
+            await m.reply_text(
+                f"Failed to download PDF: {response.status_code} {response.reason}"
+            )
 
-                    except FloodWait as e:
-                        await m.reply_text(str(e))
-                        time.sleep(e.x)
-                        continue
+    except FloodWait as e:
+        await m.reply_text(str(e))
+        time.sleep(e.x)
+        continue
 
-                elif ".pdf" in url:
-                    try:
-                        cmd = f'yt-dlp -o "{name}.pdf" "{url}"'
-                        download_cmd = f"{cmd} -R 25 --fragment-retries 25"
-                        os.system(download_cmd)
-                        copy = await bot.send_document(chat_id=m.chat.id, document=f'{name}.pdf', caption=cc1)
-                        count += 1
-                        os.remove(f'{name}.pdf')
-                    except FloodWait as e:
-                        await m.reply_text(str(e))
-                        time.sleep(e.x)
-                        continue
-                        
-                elif '/master.mpd' in url or "/dash/" in url or ".mp4?" in url or "?Signature=" in url or "d1d34p8vz63oiq.cloudfront.net" in url or "parentId=" in url or "childId=" in url:
-                   Show = f"❊━━━⟱ 🚀𝐃𝐨𝐰𝐧𝐥𝐨𝐚𝐝𝐢𝐧𝐠🚀 ⟱━━━❊\n\n📄 𝐓𝐢𝐭𝐥𝐞 » {name}\n\n⌨ 𝐐𝐮𝐚𝐥𝐢𝐭𝐲 » {raw_text2}\n\n <a href={url}> \n🤖Hello » ᴜʀʟ ᴅᴇᴋʜ ᴋᴀʀ ᴋʏᴀ ᴋᴀʀᴏɢᴇ  🤗😎 \n𝐂𝐨𝐧𝐭𝐚𝐜𝐭 𝐌𝐲 𝐁𝐨𝐬𝐬 » @SumitTripathi\n\n<blockquote>━━━━━━━✦𝗭𝗫✦━━━━━━━</blockquote>"
-                   prog = await m.reply_text(Show)
-                   output_filename = f"{name}.mp4"
-                   res_file = pwdlx_video(url, output_filename)
-                   filename = res_file
-                   await prog.delete(True)
-                   await helper.send_vid(bot, m, cc, filename, thumb, name, prog)
-                   count += 1
-                   time.sleep(1)
-                   continue
+elif ".pdf" in url:
+    try:
+        cmd = f'yt-dlp -o "{name}.pdf" "{url}"'
+        download_cmd = f"{cmd} -R 25 --fragment-retries 25"
+        os.system(download_cmd)
+        copy = await bot.send_document(
+            chat_id=m.chat.id,
+            document=f'{name}.pdf',
+            caption=cc1
+        )
+        count += 1
+        os.remove(f'{name}.pdf')
+
+    except FloodWait as e:
+        await m.reply_text(str(e))
+        time.sleep(e.x)
+        continue
+
+elif '/master.mpd' in url or "/dash/" in url or ".mp4?" in url or "?Signature=" in url or "d1d34p8vz63oiq.cloudfront.net" in url or "parentId=" in url or "childId=" in url:
+    Show = f"❊━━━⟱ 🚀𝐃𝐨𝐰𝐧𝐥𝐨𝐚𝐝𝐢𝐧𝐠🚀 ⟱━━━❊\n\n📄 𝐓𝐢𝐭𝐥𝐞 » {name}\n\n⌨ 𝐐𝐮𝐚𝐥𝐢𝐭𝐲 » {raw_text2}\n\n <a href={url}> \n🤖Hello » ᴜʀʟ ᴅᴇᴋʜ ᴋᴀʀ ᴋʏᴀ ᴋᴀʀᴏɢᴇ 🤗😎 \n𝐂𝐨𝐧𝐭𝐚𝐜𝐭 𝐌𝐲 𝐁𝐨𝐬𝐬 » @SumitTripathi\n\n<blockquote>━━━━━━━✦𝗭𝗫✦━━━━━━━</blockquote>"
+
+    prog = await m.reply_text(Show)
+    output_filename = f"{name}.mp4"
+    res_file = pwdlx_video(url, output_filename)
+    filename = res_file
+
+    await prog.delete(True)
+    await helper.send_vid(bot, m, cc, filename, thumb, name, prog)
+
+    count += 1
+    time.sleep(1)
+    continue
 
 else:
     Show = f"❊━━━⟱ 🚀𝐃𝐨𝐰𝐧𝐥𝐨𝐚𝐝𝐢𝐧𝐠🚀 ⟱━━━❊\n\n📄 𝐓𝐢𝐭𝐥𝐞 » `{name}`\n\n⌨ 𝐐𝐮𝐚𝐥𝐢𝐭𝐲 » {raw_text2}\n\n <a href={url}> \n🤖Hello » ᴜʀʟ ᴅᴇᴋʜ ᴋᴀʀ ᴋʏᴀ ᴋᴀʀᴏɢᴇ  🤗😎 𝐂𝐨𝐧𝐭𝐚𝐜𝐭 𝐌𝐲 𝐁𝐨𝐬𝐬 » @SumitTripathi\n\n<blockquote>━━━━━━━✦𝗭𝗫✦━━━━━━━</blockquote>"""
