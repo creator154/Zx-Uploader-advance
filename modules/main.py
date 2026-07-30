@@ -381,25 +381,21 @@ async def txt_handler(bot: Client, m: Message):
 
                        # Check if the response status is OK
                        if response.status_code == 200:
-                       # Write the PDF content to a file
-                       with open(f'{name}.pdf', 'wb') as file:
-                       file.write(response.content)
+    with open(f'{name}.pdf', 'wb') as file:
+        file.write(response.content)
 
-                       # Send the PDF document
-                       await asyncio.sleep(4)
-                       copy = await bot.send_document(
-                       chat_id=m.chat.id,
-                       document=f'{name}.pdf',
-                       caption=cc1
-                       )
-                       count += 1
-
-                       # Remove the PDF file after sending
-                       os.remove(f'{name}.pdf')
-                       else:
-                           await m.reply_text(
-                           f"Failed to download PDF: {response.status_code} {response.reason}"
-                           )
+    await asyncio.sleep(4)
+    copy = await bot.send_document(
+        chat_id=m.chat.id,
+        document=f"{name}.pdf",
+        caption=cc1
+    )
+    count += 1
+    os.remove(f"{name}.pdf")
+else:
+    await m.reply_text(
+        f"Failed to download PDF: {response.status_code} {response.reason}"
+)
 
                            except FloodWait as e:
                            await m.reply_text(str(e))
