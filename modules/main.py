@@ -424,7 +424,7 @@ async def txt_handler(bot: Client, m: Message):
                    continue
 
 else:
-    Show = f"❊━━━⟱ 🚀𝐃𝐨𝐰𝐧𝐥𝐨𝐚𝐝𝐢𝐧𝐠🚀 ⟱━━━❊\n\n📄 𝐓𝐢𝐭𝐥𝐞 » `{name}`\n\n⌨ 𝐐𝐮𝐚𝐥𝐢𝐭𝐲 » {raw_text2}\n\n<a href=\"{url}\">🤖Hello » ᴜʀʟ ᴅᴇᴋʜ ᴋᴀʀ ᴋʏᴀ ᴋᴀʀᴏɢᴇ 🤗😎</a>\n\n𝐂𝐨𝐧𝐭𝐚𝐜𝐭 𝐌𝐲 𝐁𝐨𝐬𝐬 » @SumitTripathi\n\n<blockquote>━━━━━━━✦𝗭𝗫✦━━━━━━━</blockquote>"
+    Show = f"❊━━━⟱ 🚀𝐃𝐨𝐰𝐧𝐥𝐨𝐚𝐝𝐢𝐧𝐠🚀 ⟱━━━❊\n\n📄 𝐓𝐢𝐭𝐥𝐞 » `{name}`\n\n⌨ 𝐐𝐮𝐚𝐥𝐢𝐭𝐲 » {raw_text2}\n\n<a href={url}>🤖Hello » ᴜʀʟ ᴅᴇᴋʜ ᴋᴀʀ ᴋʏᴀ ᴋᴀʀᴏɢᴇ 🤗😎</a>\n\n𝐂𝐨𝐧𝐭𝐚𝐜𝐭 𝐌𝐲 𝐁𝐨𝐬𝐬 » @SumitTripathi\n\n<blockquote>━━━━━━━✦𝗭𝗫✦━━━━━━━</blockquote>"
     prog = await m.reply_text(Show)
     res_file = await helper.download_video(url, cmd, name)
     filename = res_file
