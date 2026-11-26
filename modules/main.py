@@ -617,7 +617,7 @@ async def txt_handler(bot: Client, m: Message):
 
 # PDF download using response
 try:
-    # Tumhara existing PDF request wala code yahan rahega
+    # Existing PDF request code yahan rahega
 
     if response.status_code == 200:
         with open(f'{name}.pdf', 'wb') as f:
@@ -631,10 +631,8 @@ try:
 
         count += 1
 
-        # Remove the PDF file after sending
         if os.path.exists(f'{name}.pdf'):
             os.remove(f'{name}.pdf')
-
     else:
         await m.reply_text(
             f"Failed to download PDF: {response.status_code} {response.reason}"
@@ -656,7 +654,7 @@ elif ".pdf" in url:
             await m.reply_text("PDF download failed.")
             continue
 
-        copy = await bot.send_document(
+        await bot.send_document(
             chat_id=m.chat.id,
             document=f'{name}.pdf',
             caption=cc1
@@ -677,7 +675,7 @@ else:
 
 ⌨ 𝐐𝐮𝐚𝐥𝐢𝐭𝐲 » {raw_text2}
 
-🤖 Hello: ᴜʀʟ ᴅᴇᴋʜ ᴋᴀʀ ᴋʏᴀ ᴋᴀʀᴏɢᴇ 🤗
+🤖 Hello: ᴜʀʟ ᴅᴇᴋʜ ᴋʏᴀ ᴋᴀʀᴨɢᴇ 🤗
 
 😎 𝐂𝐨𝐧𝐭𝐚𝐜𝐭 𝐌𝐲 𝐁𝐨𝐬𝐬 » @HeySumit
 """
@@ -710,7 +708,6 @@ except Exception as e:
     continue
 
 await m.reply_text("𝐀𝐋𝐋 𝐃𝐎𝐍𝐄 ✅ 𝐓𝐈𝐋𝐋 𝐍𝐎𝐖")
-
 
 # Start only once
 if __name__ == "__main__":
