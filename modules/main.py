@@ -616,31 +616,27 @@ async def txt_handler(bot: Client, m: Message):
                             count += 1
 
 # PDF download using response
-if ".pdf" in url and response is not None:
+if response is not None and response.status_code == 200:
     try:
-        if response.status_code == 200:
-            with open(f'{name}.pdf', 'wb') as f:
-                f.write(response.content)
+        with open(f'{name}.pdf', 'wb') as f:
+            f.write(response.content)
 
-            await bot.send_document(
-                chat_id=m.chat.id,
-                document=f'{name}.pdf',
-                caption=cc1
-            )
+        await bot.send_document(
+            chat_id=m.chat.id,
+            document=f'{name}.pdf',
+            caption=cc1
+        )
 
-            count += 1
-
-            if os.path.exists(f'{name}.pdf'):
-                os.remove(f'{name}.pdf')
-        else:
-            await m.reply_text(
-                f"Failed to download PDF: {response.status_code} {response.reason}"
-            )
+        count += 1
 
     except FloodWait as e:
         await m.reply_text(str(e))
         await asyncio.sleep(e.value)
         continue
+
+    finally:
+        if os.path.exists(f'{name}.pdf'):
+            os.remove(f'{name}.pdf')
 
 elif ".pdf" in url:
     try:
@@ -660,12 +656,15 @@ elif ".pdf" in url:
         )
 
         count += 1
-        os.remove(f'{name}.pdf')
 
     except FloodWait as e:
         await m.reply_text(str(e))
         await asyncio.sleep(e.value)
         continue
+
+    finally:
+        if os.path.exists(f'{name}.pdf'):
+            os.remove(f'{name}.pdf')
 
 else:
     Show = f"""❊━━━⟱ 🚀𝐃𝐨𝐰𝐧𝐥𝐨𝐚𝐝𝐢𝐧𝐠🚀 ⟱━━━❊
