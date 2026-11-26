@@ -616,32 +616,31 @@ async def txt_handler(bot: Client, m: Message):
                             count += 1
 
 # PDF download using response
-try:
-    # Existing PDF request code yahan rahega
+if ".pdf" in url and response is not None:
+    try:
+        if response.status_code == 200:
+            with open(f'{name}.pdf', 'wb') as f:
+                f.write(response.content)
 
-    if response.status_code == 200:
-        with open(f'{name}.pdf', 'wb') as f:
-            f.write(response.content)
+            await bot.send_document(
+                chat_id=m.chat.id,
+                document=f'{name}.pdf',
+                caption=cc1
+            )
 
-        await bot.send_document(
-            chat_id=m.chat.id,
-            document=f'{name}.pdf',
-            caption=cc1
-        )
+            count += 1
 
-        count += 1
+            if os.path.exists(f'{name}.pdf'):
+                os.remove(f'{name}.pdf')
+        else:
+            await m.reply_text(
+                f"Failed to download PDF: {response.status_code} {response.reason}"
+            )
 
-        if os.path.exists(f'{name}.pdf'):
-            os.remove(f'{name}.pdf')
-    else:
-        await m.reply_text(
-            f"Failed to download PDF: {response.status_code} {response.reason}"
-        )
-
-except FloodWait as e:
-    await m.reply_text(str(e))
-    await asyncio.sleep(e.value)
-    continue
+    except FloodWait as e:
+        await m.reply_text(str(e))
+        await asyncio.sleep(e.value)
+        continue
 
 elif ".pdf" in url:
     try:
