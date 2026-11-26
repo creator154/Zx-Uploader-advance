@@ -615,13 +615,30 @@ async def txt_handler(bot: Client, m: Message):
                             copy = await bot.send_document(chat_id=m.chat.id, document=f'{name}.pdf', caption=cc1)
                             count += 1
 
-# Remove the PDF file after sending
-os.remove(f'{name}.pdf')
+# PDF download using response
+try:
+    # Tumhara existing PDF request wala code yahan rahega
 
-else:
-    await m.reply_text(
-        f"Failed to download PDF: {response.status_code} {response.reason}"
-    )
+    if response.status_code == 200:
+        with open(f'{name}.pdf', 'wb') as f:
+            f.write(response.content)
+
+        await bot.send_document(
+            chat_id=m.chat.id,
+            document=f'{name}.pdf',
+            caption=cc1
+        )
+
+        count += 1
+
+        # Remove the PDF file after sending
+        if os.path.exists(f'{name}.pdf'):
+            os.remove(f'{name}.pdf')
+
+    else:
+        await m.reply_text(
+            f"Failed to download PDF: {response.status_code} {response.reason}"
+        )
 
 except FloodWait as e:
     await m.reply_text(str(e))
