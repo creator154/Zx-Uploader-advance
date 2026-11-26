@@ -35,7 +35,8 @@ bot = Client(
 )
 
 my_name = "ZX"
-
+WEBHOOK = False
+PORT = int(os.environ.get("PORT", 8080))
 cookies_file_path = os.getenv("COOKIES_FILE_PATH", "/modules/youtube_cookies.txt")
 
 # Define aiohttp routes
